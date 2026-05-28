@@ -1,0 +1,20 @@
+{
+  "name": "mourad-mekki-ielts-backend",
+  "version": "1.0.0",
+  "description": "Backend for the Mourad Mekki Teacher Toolkit \u2014 IELTS Speaking Assessment. Groq Whisper transcription + Groq Llama AI scoring.",
+  "type": "commonjs",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "multer": "^1.4.5-lts.1",
+    "pg": "^8.11.5"
+  }
+}

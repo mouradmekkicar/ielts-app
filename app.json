@@ -1,0 +1,16 @@
+{
+  "name": "Mourad Mekki Teacher Toolkit — IELTS Speaking",
+  "description": "IELTS Speaking assessment platform with Groq Whisper transcription and AI band scoring.",
+  "keywords": ["ielts", "speaking", "groq", "whisper", "express", "education"],
+  "repository": "https://github.com/YOUR_USERNAME/YOUR_REPO",
+  "env": {
+    "GROQ_API_KEY": {
+      "description": "Groq API key from https://console.groq.com. Leave blank to run in mock mode (no cost).",
+      "required": false
+    },
+    "WHISPER_MODEL": { "value": "whisper-large-v3-turbo", "required": false },
+    "SCORING_MODEL": { "value": "llama-3.3-70b-versatile", "required": false }
+  },
+  "formation": { "web": { "quantity": 1, "size": "basic" } },
+  "buildpacks": [{ "url": "heroku/nodejs" }]
+}

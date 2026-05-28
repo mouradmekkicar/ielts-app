@@ -1,0 +1,45 @@
+# Render Blueprint — one-click deploy for the IELTS backend.
+# Docs: https://render.com/docs/blueprint-spec
+#
+# Deploy flow (see README "Deploy: Render + Neon" for the full walkthrough):
+#   1. Create a free Postgres at https://neon.tech and copy its connection string.
+#   2. Push this folder to a Git repo.
+#   3. In Render: New > Blueprint > connect the repo. Render reads this file and
+#      prompts you for the two secrets below (they're marked sync: false):
+#        - GROQ_API_KEY  : your Groq key (blank = free mock mode)
+#        - DATABASE_URL  : the Neon connection string (blank = ephemeral file store)
+#
+# Render injects PORT automatically; server.js reads process.env.PORT.
+# Postgres SSL is auto-detected (Neon URLs include sslmode=require).
+#
+# Prefer zero manual steps? Uncomment the `databases:` block and the
+# `fromDatabase` env var, and delete the `DATABASE_URL ... sync: false` entry.
+# Render will then provision its own Postgres — but note Render's FREE Postgres
+# expires after ~30 days, whereas Neon's free plan does not.
+#
+# databases:
+#   - name: ielts-db
+#     plan: free
+
+services:
+  - type: web
+    name: mourad-mekki-ielts
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    autoDeploy: true
+    healthCheckPath: /api/config
+    envVars:
+      - key: GROQ_API_KEY
+        sync: false
+      - key: DATABASE_URL
+        sync: false
+      - key: WHISPER_MODEL
+        value: whisper-large-v3-turbo
+      - key: SCORING_MODEL
+        value: llama-3.3-70b-versatile
+      # - key: DATABASE_URL          # use this instead if provisioning Render's DB
+      #   fromDatabase:
+      #     name: ielts-db
+      #     property: connectionString

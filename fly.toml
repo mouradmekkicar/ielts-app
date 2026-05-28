@@ -1,0 +1,22 @@
+# Fly.io config — deploy with:  fly launch --copy-config --now
+# then set your key:            fly secrets set GROQ_API_KEY=gsk_xxx
+app = "mourad-mekki-ielts"
+primary_region = "iad"
+
+[build]
+  dockerfile = "Dockerfile"
+
+[env]
+  PORT = "8787"
+
+[http_service]
+  internal_port = 8787
+  force_https = true
+  auto_stop_machines = true
+  auto_start_machines = true
+  min_machines_running = 0
+
+[[vm]]
+  cpu_kind = "shared"
+  cpus = 1
+  memory_mb = 256
