@@ -1,0 +1,78 @@
+# ============================================================================
+# Mourad Mekki Teacher Toolkit · Supabase keep-alive
+# ----------------------------------------------------------------------------
+# A free Supabase project pauses after 7 days with no database activity. This
+# workflow performs one tiny SELECT against the public.ping table twice a
+# week, which counts as real database activity and resets the timer.
+#
+# Where to put this file:   .github/workflows/keep-alive.yml   in the same
+# GitHub repo you already deploy from Render. Commit, push, done.
+#
+# Required repo secrets (Settings → Secrets and variables → Actions → New
+# repository secret):
+#     SUPABASE_URL        e.g. https://abcdwxyz.supabase.co
+#     SUPABASE_ANON_KEY   your anon / public key (same value as in the HTML)
+#
+# How to verify: open the Actions tab → "Supabase keep-alive" → click
+# "Run workflow". A green check means everything is wired correctly. After
+# that, it will run automatically twice a week without you doing anything.
+# ============================================================================
+
+name: Supabase keep-alive
+
+on:
+  schedule:
+    # Mondays and Thursdays at 06:17 UTC.
+    # Off-peak time and off-the-hour minute so it isn't crowded out by the
+    # GitHub Actions traffic spike that happens on the dot. 3-4 day gap
+    # between pings; the pause threshold is 7 days, so there's wide margin.
+    - cron: '17 6 * * 1,4'
+  workflow_dispatch:        # also runnable on demand from the Actions tab
+
+# This workflow only reads. It doesn't need write access to the repo.
+permissions:
+  contents: read
+
+jobs:
+  ping:
+    name: Ping Supabase
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: SELECT one row from public.ping via PostgREST
+        env:
+          SUPABASE_URL:      ${{ secrets.SUPABASE_URL }}
+          SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+        run: |
+          set -euo pipefail
+
+          if [ -z "${SUPABASE_URL:-}" ] || [ -z "${SUPABASE_ANON_KEY:-}" ]; then
+            echo "::error::SUPABASE_URL or SUPABASE_ANON_KEY repo secret is missing."
+            exit 1
+          fi
+
+          # PostgREST endpoint for the ping table. Anon-readable; nothing
+          # sensitive is ever exposed by this request.
+          url="${SUPABASE_URL%/}/rest/v1/ping?select=id,last_ping&limit=1"
+          echo "Pinging: $url"
+
+          status=$(curl --silent --show-error --max-time 30 \
+            --output /tmp/body --write-out "%{http_code}" \
+            -H "apikey: $SUPABASE_ANON_KEY" \
+            -H "Authorization: Bearer $SUPABASE_ANON_KEY" \
+            "$url")
+
+          echo "HTTP $status"
+          echo "Response body:"
+          cat /tmp/body || true
+          echo
+
+          if [ "$status" != "200" ]; then
+            echo "::error::Keep-alive failed (HTTP $status). Common causes:"
+            echo "::error::  • the supabase-keepalive.sql snippet has not been run yet"
+            echo "::error::  • SUPABASE_URL or SUPABASE_ANON_KEY secret is wrong"
+            echo "::error::  • the project is already paused — visit the Supabase dashboard and click Restore"
+            exit 1
+          fi
+
+          echo "✓ Supabase ping succeeded — inactivity timer reset."
