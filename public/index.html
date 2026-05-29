@@ -2190,7 +2190,10 @@ a{color:var(--mm-fg-brand);text-decoration:none;}
    PRINT — generated reports + preview + Arabic
    ============================================================ */
 @media print{
-  /* When a preview overlay is open, print ONLY it. */
+  /* When a preview overlay is open, print ONLY it. The app shell carries
+     min-height:100vh; if left visible it reserves an empty first page and
+     pushes the overlay (a body-level sibling) onto page 2. Hide it entirely. */
+  body.rg-preview-open #app{display:none!important;}
   body.rg-preview-open .mm-report-wrap,
   body.rg-preview-open .mm-topbar,
   body.rg-preview-open .mm-print-footer,
