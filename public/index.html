@@ -744,9 +744,9 @@ a{color:var(--mm-fg-brand);text-decoration:none;}
    REPORT — A4 DELIVERABLE
    ============================================================ */
 .mm-report-wrap{
-  max-width:calc(var(--mm-container-report) + 200px);
+  max-width:calc(var(--mm-container-report) + 224px);
   margin:0 auto;padding:var(--mm-s-6) var(--mm-s-5);
-  display:grid;grid-template-columns:1fr 180px;gap:var(--mm-s-5);
+  display:grid;grid-template-columns:1fr 204px;gap:var(--mm-s-5);
 }
 @media (max-width:1024px){.mm-report-wrap{grid-template-columns:1fr;}}
 
@@ -1054,6 +1054,17 @@ a{color:var(--mm-fg-brand);text-decoration:none;}
   font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
   color:var(--mm-fg-tertiary);margin-bottom:var(--mm-s-2);
 }
+/* Action labels must stay inside the button. The global .mm-btn uses
+   white-space:nowrap, which overflows the narrow sidebar; here we let the
+   label wrap and the button grow instead of spilling past its border. */
+.mm-report-actions .mm-btn{
+  white-space:normal;
+  height:auto;min-height:40px;
+  line-height:1.3;
+  text-align:left;
+  align-items:center;
+}
+.mm-report-actions .mm-btn svg{flex:0 0 auto;}
 
 /* ============================================================
    PREMIUM REPORT IDENTITY (Phase 7)
@@ -2083,8 +2094,20 @@ a{color:var(--mm-fg-brand);text-decoration:none;}
 }
 .report-ar .rg-meta__l,.report-ar .rg-block__title,.report-ar .rg-ev__label,
 .report-ar .rg-head__eyebrow{ letter-spacing:0; }
-.report-ar .rg-ul,.report-ar .rg-ol{padding-left:0;padding-right:6px;direction:rtl;list-style-position:inside;}
-.report-ar .rg-ul li,.report-ar .rg-ol li{direction:rtl;text-align:right;}
+/* RTL bullet lists: marker tight to the text on the right edge */
+.report-ar .rg-ul{padding-left:0;padding-right:6px;direction:rtl;list-style-position:inside;}
+.report-ar .rg-ul li{direction:rtl;text-align:right;}
+/* RTL numbered lists: native marker placement strands the number on the
+   far left in RTL, so we draw the number with a counter pinned to the
+   right edge — the number now sits directly beside its line of text. */
+.report-ar .rg-ol{padding:0;margin:0;direction:rtl;text-align:right;list-style:none;counter-reset:rg-ar-ol;}
+.report-ar .rg-ol li{position:relative;direction:rtl;text-align:right;padding-right:1.9em;counter-increment:rg-ar-ol;}
+.report-ar .rg-ol li::before{
+  content:counter(rg-ar-ol) ".";
+  position:absolute;right:0;top:0;
+  font-weight:600;color:var(--mm-fg-secondary);
+  font-variant-numeric:tabular-nums;
+}
 .report-ar .rg-strip__cell,.report-ar .rg-crit__card,.report-ar .rg-meta__item{text-align:center;}
 .report-ar .rg-qstrong,.report-ar .rg-qmeta{direction:rtl;}
 .report-ar .rg-ev,.report-ar .rg-block,.report-ar .rg-caution,
