@@ -2120,7 +2120,7 @@ a{color:var(--mm-fg-brand);text-decoration:none;}
 .report-ar .rg-qstrong,.report-ar .rg-qmeta{direction:rtl;}
 .report-ar .rg-ev,.report-ar .rg-block,.report-ar .rg-caution,
 .report-ar .rg-final,.report-ar .rg-target{direction:rtl;text-align:right;}
-.report-ar .rg-foot__text{direction:rtl;letter-spacing:0;}
+.report-ar .rg-foot__text,.report-ar .rg-foot__copy{direction:rtl;letter-spacing:0;}
 /* English evidence quotes inside Arabic stay LTR + left aligned */
 .report-ar .english-evidence{text-align:left;}
 
@@ -11662,6 +11662,14 @@ function rgFilename(session, type, lang){
 }
 
 function rgExport(session, sc, test, type, lang, btn){
+  // Arabic (RTL) reports cannot go through html2canvas: it has no Arabic
+  // contextual shaping or bidi reordering, so letters come out isolated and
+  // mis-ordered. Route Arabic through the browser's native print engine —
+  // which shapes Arabic correctly — and the user saves it as a PDF.
+  if(type==="parent" && lang==="ar"){
+    rgPrintNative(session, sc, test, type, lang);
+    return;
+  }
   // Full report → capture the live premium report directly (unchanged path).
   if(type==="full"){
     const live = document.querySelector(".mm-report");
@@ -11679,6 +11687,15 @@ function rgExport(session, sc, test, type, lang, btn){
       suppressSubline: (type==="parent" && lang==="ar")
     });
   });
+}
+
+/* Arabic reports print via the browser (correct shaping). If a preview is
+   already open we just print it; otherwise we open the preview first. */
+function rgPrintNative(session, sc, test, type, lang){
+  const fire = ()=>{ toast("Choose “Save as PDF” in the print dialog"); window.print(); };
+  if(document.querySelector(".rg-overlay")){ fire(); return; }
+  rgOpenPreview(session, sc, test, type, lang);
+  setTimeout(fire, 320);
 }
 
 /* Render a generated report into an off-screen stage so html2canvas
