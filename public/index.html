@@ -2070,6 +2070,7 @@ a{color:var(--mm-fg-brand);text-decoration:none;}
 .rg-foot{margin-top:18px;}
 .rg-foot__rule{height:1px;background:var(--mm-gold-500);margin-bottom:6px;}
 .rg-foot__text{font-size:11px;font-weight:600;letter-spacing:.04em;color:var(--mm-navy-800);text-align:center;}
+.rg-foot__copy{font-size:8.5px;line-height:1.55;color:var(--mm-fg-tertiary);text-align:center;margin-top:6px;letter-spacing:.01em;}
 
 /* QUICK summary — compact, single A4 */
 .mm-report--quick .rg-page--tight{padding:0;}
@@ -2094,19 +2095,26 @@ a{color:var(--mm-fg-brand);text-decoration:none;}
 }
 .report-ar .rg-meta__l,.report-ar .rg-block__title,.report-ar .rg-ev__label,
 .report-ar .rg-head__eyebrow{ letter-spacing:0; }
-/* RTL bullet lists: marker tight to the text on the right edge */
-.report-ar .rg-ul{padding-left:0;padding-right:6px;direction:rtl;list-style-position:inside;}
-.report-ar .rg-ul li{direction:rtl;text-align:right;}
-/* RTL numbered lists: native marker placement strands the number on the
-   far left in RTL, so we draw the number with a counter pinned to the
-   right edge — the number now sits directly beside its line of text. */
+/* RTL bullet lists: native marker placement strands the bullet on the far
+   left in RTL, so we draw it with ::before pinned to the right edge — the
+   bullet now sits directly beside its line of text. */
+.report-ar .rg-ul{padding:0;margin:0;direction:rtl;text-align:right;list-style:none;}
+.report-ar .rg-ul li{position:relative;direction:rtl;text-align:right;padding-right:1.1em;}
+.report-ar .rg-ul li::before{
+  content:"•";
+  position:absolute;right:0;top:0;line-height:inherit;
+  color:var(--mm-gold-700);
+  -webkit-print-color-adjust:exact;print-color-adjust:exact;
+}
+/* RTL numbered lists: same approach, with a counter for the number. */
 .report-ar .rg-ol{padding:0;margin:0;direction:rtl;text-align:right;list-style:none;counter-reset:rg-ar-ol;}
 .report-ar .rg-ol li{position:relative;direction:rtl;text-align:right;padding-right:1.9em;counter-increment:rg-ar-ol;}
 .report-ar .rg-ol li::before{
   content:counter(rg-ar-ol) ".";
-  position:absolute;right:0;top:0;
-  font-weight:600;color:var(--mm-fg-secondary);
+  position:absolute;right:0;top:0;line-height:inherit;
+  font-weight:600;color:var(--mm-gold-700);
   font-variant-numeric:tabular-nums;
+  -webkit-print-color-adjust:exact;print-color-adjust:exact;
 }
 .report-ar .rg-strip__cell,.report-ar .rg-crit__card,.report-ar .rg-meta__item{text-align:center;}
 .report-ar .rg-qstrong,.report-ar .rg-qmeta{direction:rtl;}
@@ -2508,6 +2516,15 @@ a{color:var(--mm-fg-brand);text-decoration:none;}
 .mm-tip-card__label{font-size:10px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--mm-gold-900);margin-bottom:4px;}
 .mm-tip-card__text{font-family:var(--mm-f-display);font-size:18px;color:var(--mm-navy-900);line-height:1.4;}
 .mm-tip-card__link{flex:0 0 auto;}
+
+/* Overview copyright / IP notice */
+.mm-copyright-note{
+  max-width:var(--mm-container);margin:0 auto;
+  padding:var(--mm-s-5) var(--mm-s-6) var(--mm-s-8);
+  border-top:1px solid var(--mm-border-subtle);
+  font-size:12px;line-height:1.65;color:var(--mm-fg-tertiary);text-align:center;
+}
+.mm-copyright-note strong{color:var(--mm-fg-secondary);font-weight:600;}
 
 /* Setup "recommended before test" banner */
 .mm-guide-banner{
@@ -7812,7 +7829,12 @@ function renderHome(){
     ])
   ]);
 
-  return el("div",{},[hero, strip, tipCard, recentBlock].filter(Boolean));
+  const copyrightNote = el("section",{class:"mm-copyright-note"},[
+    el("strong",{},"© 2026 Mourad Mekki Teacher Toolkit. All rights reserved. "),
+    "This platform and all generated reports are protected intellectual property, provided for personal educational use only. No part may be copied, reproduced, redistributed, resold, or shared publicly without prior written permission."
+  ]);
+
+  return el("div",{},[hero, strip, tipCard, recentBlock, copyrightNote].filter(Boolean));
 }
 
 /* ------------------------------------------------------------
@@ -10867,7 +10889,8 @@ const MM_REPORT_TR = {
     finalNote:"A note of encouragement",
     cautionHead:"Important note",
     caution:"This report is for learning and practice. Official IELTS scores are awarded only under official test conditions, through accredited centres.",
-    footer:"Mourad Mekki Teacher Toolkit · IELTS Coach"
+    footer:"Mourad Mekki Teacher Toolkit · IELTS Coach",
+    copyright:"© 2026 Mourad Mekki Teacher Toolkit. All rights reserved. This report and the assessment platform are protected intellectual property, provided for personal educational use only. No part may be copied, reproduced, redistributed, resold, or shared publicly without prior written permission."
   },
   ar:{
     parentTitle:"تقرير مبسط لولي الأمر",
@@ -10886,10 +10909,11 @@ const MM_REPORT_TR = {
     improved:"صياغة أفضل",
     explainNote:"شرح مبسط",
     weekly:"تدريب مقترح لهذا الأسبوع",
-    finalNote:"رسالة تشجيعية",
+    finalNote:"كلمة أخيرة",
     cautionHead:"ملاحظة مهمة",
     caution:"هذا التقرير مخصص للتعلم والتدريب، وليس نتيجة رسمية في اختبار الأيلتس. الدرجات الرسمية تصدر فقط في ظروف الاختبار الرسمية ومن خلال الجهات المعتمدة.",
-    footer:"أداة المعلم مراد مكي · مدرب الأيلتس"
+    footer:"أداة المعلم مراد المكي · مدرب الأيلتس",
+    copyright:"© 2026 أداة المعلم مراد المكي. جميع الحقوق محفوظة. هذا التقرير ومنصة التقييم ملكية فكرية محمية، ويُقدَّم للاستخدام التعليمي الشخصي فقط. لا يجوز نسخ أي جزء منه أو إعادة إنتاجه أو توزيعه أو بيعه أو مشاركته علنًا دون إذن خطي مسبق."
   }
 };
 function getReportLabel(key, language){
@@ -11269,10 +11293,11 @@ function rgBrandHead(eyebrow, sub, lang){
     el("div",{class:"rg-head__rule"})
   ]);
 }
-function rgFooter(text){
+function rgFooter(text, copyrightText){
   return el("div",{class:"rg-foot"},[
     el("div",{class:"rg-foot__rule"}),
-    el("div",{class:"rg-foot__text"}, text||"Mourad Mekki Teacher Toolkit · IELTS Coach")
+    el("div",{class:"rg-foot__text"}, text||"Mourad Mekki Teacher Toolkit · IELTS Coach"),
+    el("div",{class:"rg-foot__copy"}, copyrightText || MM_REPORT_TR.en.copyright)
   ]);
 }
 function rgScoreStrip(items){
@@ -11527,7 +11552,7 @@ function rgRenderParent(data, lang){
     el("div",{class:"rg-caution"},[
       el("strong",{}, tr.cautionHead+" · "), tr.caution
     ]),
-    rgFooter(tr.footer)
+    rgFooter(tr.footer, tr.copyright)
   ]);
 
   const page2 = el("div",{class:"rg-page"+(isAR?" report-ar":"")},[
@@ -11550,7 +11575,7 @@ function rgRenderParent(data, lang){
       el("div",{class:"rg-block__title"}, tr.finalNote),
       el("p",{class:"rg-prose__p"}, finalNote)
     ]),
-    rgFooter(tr.footer)
+    rgFooter(tr.footer, tr.copyright)
   ]);
 
   const rootAttrs = {class:"mm-report mm-report--gen mm-report--parent"+(isAR?" report-ar":"")};
