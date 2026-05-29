@@ -2083,12 +2083,13 @@ a{color:var(--mm-fg-brand);text-decoration:none;}
 }
 .report-ar .rg-meta__l,.report-ar .rg-block__title,.report-ar .rg-ev__label,
 .report-ar .rg-head__eyebrow{ letter-spacing:0; }
-.report-ar .rg-ul,.report-ar .rg-ol{padding-left:0;padding-right:20px;}
+.report-ar .rg-ul,.report-ar .rg-ol{padding-left:0;padding-right:6px;direction:rtl;list-style-position:inside;}
+.report-ar .rg-ul li,.report-ar .rg-ol li{direction:rtl;text-align:right;}
 .report-ar .rg-strip__cell,.report-ar .rg-crit__card,.report-ar .rg-meta__item{text-align:center;}
 .report-ar .rg-qstrong,.report-ar .rg-qmeta{direction:rtl;}
 .report-ar .rg-ev,.report-ar .rg-block,.report-ar .rg-caution,
 .report-ar .rg-final,.report-ar .rg-target{direction:rtl;text-align:right;}
-.report-ar .rg-foot__text{direction:rtl;}
+.report-ar .rg-foot__text{direction:rtl;letter-spacing:0;}
 /* English evidence quotes inside Arabic stay LTR + left aligned */
 .report-ar .english-evidence{text-align:left;}
 
@@ -2183,6 +2184,366 @@ a{color:var(--mm-fg-brand);text-decoration:none;}
     -webkit-print-color-adjust:exact;print-color-adjust:exact;color-adjust:exact;
   }
   .report-ar{direction:rtl;text-align:right;}
+}
+
+/* ============================================================
+   USER GUIDE — student-facing IELTS Speaking guide
+   Fully namespaced (mm-guide-*). Reuses existing design tokens.
+   ============================================================ */
+.mm-guide{max-width:var(--mm-container);margin:0 auto;padding:var(--mm-s-7) var(--mm-s-6) var(--mm-s-9);}
+
+/* Hero */
+.mm-guide-hero{
+  position:relative;overflow:hidden;
+  background:linear-gradient(135deg,var(--mm-navy-900),var(--mm-navy-800));
+  border-radius:var(--mm-r-2xl);
+  padding:var(--mm-s-8) var(--mm-s-7);
+  text-align:center;color:var(--mm-navy-50);
+  box-shadow:var(--mm-e-2);
+}
+.mm-guide-hero::before{
+  content:"";position:absolute;inset:0;
+  background:radial-gradient(circle at 20% 0%,rgba(212,175,55,.14),transparent 55%);
+  pointer-events:none;
+}
+.mm-guide-hero__eyebrow{
+  position:relative;font-size:11px;font-weight:600;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--mm-gold-400);margin-bottom:var(--mm-s-4);
+}
+.mm-guide-hero__title{
+  position:relative;font-family:var(--mm-f-display);font-weight:500;
+  font-size:clamp(32px,4vw + 1rem,52px);line-height:1.1;letter-spacing:-.02em;
+  margin:0 0 var(--mm-s-3);color:var(--mm-navy-50);
+}
+.mm-guide-hero__title em{font-style:italic;color:var(--mm-gold-400);}
+.mm-guide-hero__sub{
+  position:relative;font-size:17px;color:var(--mm-navy-200);
+  max-width:560px;margin:0 auto var(--mm-s-4);line-height:1.5;font-style:italic;
+  font-family:var(--mm-f-display);
+}
+.mm-guide-hero__intro{
+  position:relative;font-size:15px;color:var(--mm-navy-100);
+  max-width:680px;margin:0 auto var(--mm-s-6);line-height:1.65;
+}
+.mm-guide-hero__actions{position:relative;display:flex;gap:var(--mm-s-3);justify-content:center;flex-wrap:wrap;}
+
+/* Sticky internal jump menu */
+.mm-guide-jump{
+  position:sticky;top:72px;z-index:40;
+  margin:var(--mm-s-5) 0 var(--mm-s-6);
+  background:rgba(253,251,246,.94);
+  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  border:1px solid var(--mm-border-subtle);border-radius:var(--mm-r-full);
+  box-shadow:var(--mm-e-1);
+}
+.mm-guide-jump__scroll{
+  display:flex;gap:var(--mm-s-1);align-items:center;
+  padding:var(--mm-s-2) var(--mm-s-3);
+  overflow-x:auto;scrollbar-width:thin;
+  -webkit-overflow-scrolling:touch;
+}
+.mm-guide-jump__scroll::-webkit-scrollbar{height:4px;}
+.mm-guide-jump__scroll::-webkit-scrollbar-thumb{background:var(--mm-navy-200);border-radius:4px;}
+.mm-guide-jump__link{
+  flex:0 0 auto;padding:7px 14px;font-size:12.5px;font-weight:500;
+  color:var(--mm-fg-secondary);border-radius:var(--mm-r-full);white-space:nowrap;
+  letter-spacing:.03em;transition:background var(--mm-dur-quick) var(--mm-ease),color var(--mm-dur-quick) var(--mm-ease);
+}
+.mm-guide-jump__link:hover{background:var(--mm-navy-50);color:var(--mm-navy-900);}
+.mm-guide-jump__link.is-active{background:var(--mm-gold-50);color:var(--mm-navy-900);}
+
+/* Section scaffold */
+.mm-guide-section{scroll-margin-top:148px;margin-top:var(--mm-s-8);}
+.mm-guide-section:first-of-type{margin-top:var(--mm-s-6);}
+.mm-guide-shead{margin-bottom:var(--mm-s-5);}
+.mm-guide-shead__eyebrow{
+  font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--mm-fg-accent);margin-bottom:var(--mm-s-2);
+}
+.mm-guide-shead__title{
+  font-family:var(--mm-f-display);font-size:30px;font-weight:500;
+  color:var(--mm-navy-900);margin:0;letter-spacing:-.01em;line-height:1.15;
+}
+.mm-guide-shead__intro{color:var(--mm-fg-secondary);font-size:15px;line-height:1.6;margin:var(--mm-s-3) 0 0;max-width:720px;}
+.mm-guide-shead__rule{height:1.5px;width:72px;background:var(--mm-gold-500);margin-top:var(--mm-s-4);}
+
+/* Overview cards */
+.mm-guide-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--mm-s-4);}
+@media (max-width:880px){.mm-guide-grid{grid-template-columns:repeat(2,1fr);}}
+@media (max-width:540px){.mm-guide-grid{grid-template-columns:1fr;}}
+.mm-guide-ocard{
+  background:var(--mm-bg-surface);border:1px solid var(--mm-border-subtle);
+  border-radius:var(--mm-r-lg);padding:var(--mm-s-5);
+  border-top:2px solid var(--mm-gold-500);box-shadow:var(--mm-e-1);
+}
+.mm-guide-ocard__label{
+  font-size:10px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--mm-fg-tertiary);margin-bottom:var(--mm-s-2);
+}
+.mm-guide-ocard__value{
+  font-family:var(--mm-f-display);font-size:26px;font-weight:500;
+  color:var(--mm-navy-900);line-height:1.1;
+}
+.mm-guide-ocard__note{font-size:12.5px;color:var(--mm-fg-secondary);margin-top:var(--mm-s-2);line-height:1.5;}
+
+/* Part panels */
+.mm-guide-part{
+  background:var(--mm-bg-surface);border:1px solid var(--mm-border-subtle);
+  border-radius:var(--mm-r-lg);padding:var(--mm-s-6);box-shadow:var(--mm-e-1);
+  margin-bottom:var(--mm-s-4);border-left:3px solid var(--mm-navy-700);
+}
+.mm-guide-part__head{display:flex;align-items:baseline;gap:var(--mm-s-3);flex-wrap:wrap;margin-bottom:var(--mm-s-4);}
+.mm-guide-part__badge{
+  font-family:var(--mm-f-mono);font-size:11px;font-weight:600;letter-spacing:.08em;
+  background:var(--mm-navy-800);color:var(--mm-gold-400);
+  padding:4px 10px;border-radius:var(--mm-r-sm);text-transform:uppercase;
+  -webkit-print-color-adjust:exact;print-color-adjust:exact;
+}
+.mm-guide-part__title{font-family:var(--mm-f-display);font-size:21px;font-weight:500;color:var(--mm-navy-900);margin:0;}
+.mm-guide-part__dur{font-size:12.5px;color:var(--mm-fg-tertiary);font-family:var(--mm-f-mono);}
+.mm-guide-part__row{display:grid;grid-template-columns:140px 1fr;gap:var(--mm-s-3) var(--mm-s-4);align-items:start;margin-bottom:var(--mm-s-3);}
+@media (max-width:600px){.mm-guide-part__row{grid-template-columns:1fr;gap:4px;}}
+.mm-guide-part__key{font-size:12px;font-weight:600;letter-spacing:.04em;color:var(--mm-fg-tertiary);text-transform:uppercase;padding-top:2px;}
+.mm-guide-part__val{font-size:14.5px;color:var(--mm-fg-secondary);line-height:1.6;}
+.mm-guide-formula{
+  display:inline-block;font-family:var(--mm-f-mono);font-size:13px;
+  background:var(--mm-gold-50);color:var(--mm-gold-900);
+  padding:6px 12px;border-radius:var(--mm-r-sm);
+  border:1px solid var(--mm-gold-200);line-height:1.5;
+  -webkit-print-color-adjust:exact;print-color-adjust:exact;
+}
+
+/* Example weak/better */
+.mm-guide-ex{margin-top:var(--mm-s-4);border-top:1px dashed var(--mm-border-subtle);padding-top:var(--mm-s-4);}
+.mm-guide-ex__q{font-size:14px;color:var(--mm-navy-900);font-weight:600;margin-bottom:var(--mm-s-3);}
+.mm-guide-ex__row{display:grid;grid-template-columns:1fr 1fr;gap:var(--mm-s-3);}
+@media (max-width:640px){.mm-guide-ex__row{grid-template-columns:1fr;}}
+.mm-guide-ex__cell{border-radius:var(--mm-r-md);padding:var(--mm-s-4);font-size:13.5px;line-height:1.6;}
+.mm-guide-ex__cell--weak{background:var(--mm-danger-bg);color:var(--mm-ink-900);border:1px solid #ecc9c9;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+.mm-guide-ex__cell--better{background:var(--mm-success-bg);color:var(--mm-ink-900);border:1px solid #c7e0d2;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+.mm-guide-ex__tag{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;display:block;margin-bottom:6px;}
+.mm-guide-ex__cell--weak .mm-guide-ex__tag{color:var(--mm-danger);}
+.mm-guide-ex__cell--better .mm-guide-ex__tag{color:var(--mm-success);}
+
+/* Cue-card block */
+.mm-guide-cue{
+  background:var(--mm-cream);border:1px solid var(--mm-gold-200);
+  border-radius:var(--mm-r-md);padding:var(--mm-s-5);margin-top:var(--mm-s-3);
+  -webkit-print-color-adjust:exact;print-color-adjust:exact;
+}
+.mm-guide-cue__title{font-family:var(--mm-f-display);font-size:16px;font-weight:600;color:var(--mm-navy-900);margin:0 0 var(--mm-s-2);}
+.mm-guide-cue__lead{font-size:13px;color:var(--mm-fg-secondary);margin:0 0 var(--mm-s-2);}
+.mm-guide-cue__list{margin:0;padding-left:20px;}
+.mm-guide-cue__list li{font-size:14px;color:var(--mm-ink-900);line-height:1.7;}
+
+/* Accordion (scoring criteria) */
+.mm-guide-acc{display:flex;flex-direction:column;gap:var(--mm-s-3);}
+.mm-guide-acc__item{
+  background:var(--mm-bg-surface);border:1px solid var(--mm-border-subtle);
+  border-radius:var(--mm-r-lg);overflow:hidden;box-shadow:var(--mm-e-1);
+}
+.mm-guide-acc__btn{
+  width:100%;display:flex;align-items:center;gap:var(--mm-s-3);
+  padding:var(--mm-s-5);text-align:left;cursor:pointer;background:transparent;
+}
+.mm-guide-acc__btn:hover{background:var(--mm-navy-50);}
+.mm-guide-acc__num{
+  flex:0 0 auto;width:34px;height:34px;border-radius:var(--mm-r-full);
+  display:grid;place-items:center;font-family:var(--mm-f-mono);font-size:14px;font-weight:600;
+  background:var(--mm-navy-800);color:var(--mm-gold-400);
+  -webkit-print-color-adjust:exact;print-color-adjust:exact;
+}
+.mm-guide-acc__title{flex:1;font-family:var(--mm-f-display);font-size:17px;font-weight:500;color:var(--mm-navy-900);}
+.mm-guide-acc__chev{flex:0 0 auto;color:var(--mm-fg-tertiary);transition:transform var(--mm-dur-std) var(--mm-ease);}
+.mm-guide-acc__item.is-open .mm-guide-acc__chev{transform:rotate(180deg);}
+.mm-guide-acc__body{display:none;padding:0 var(--mm-s-5) var(--mm-s-5);}
+.mm-guide-acc__item.is-open .mm-guide-acc__body{display:block;}
+.mm-guide-acc__cols{display:grid;grid-template-columns:1fr 1fr;gap:var(--mm-s-5);}
+@media (max-width:640px){.mm-guide-acc__cols{grid-template-columns:1fr;}}
+.mm-guide-acc__h{font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--mm-fg-tertiary);margin:0 0 var(--mm-s-2);}
+.mm-guide-acc__list{margin:0;padding-left:18px;}
+.mm-guide-acc__list li{font-size:13.5px;color:var(--mm-fg-secondary);line-height:1.7;margin-bottom:4px;}
+
+/* Do / Don't columns */
+.mm-guide-dd{display:grid;grid-template-columns:1fr 1fr;gap:var(--mm-s-4);}
+@media (max-width:700px){.mm-guide-dd{grid-template-columns:1fr;}}
+.mm-guide-dd__col{border-radius:var(--mm-r-lg);padding:var(--mm-s-5);border:1px solid var(--mm-border-subtle);box-shadow:var(--mm-e-1);}
+.mm-guide-dd__col--do{background:var(--mm-success-bg);border-color:#c7e0d2;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+.mm-guide-dd__col--dont{background:var(--mm-danger-bg);border-color:#ecc9c9;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+.mm-guide-dd__title{font-family:var(--mm-f-display);font-size:20px;font-weight:600;margin:0 0 var(--mm-s-4);display:flex;align-items:center;gap:8px;}
+.mm-guide-dd__col--do .mm-guide-dd__title{color:var(--mm-band-expert);}
+.mm-guide-dd__col--dont .mm-guide-dd__title{color:var(--mm-danger);}
+.mm-guide-dd__list{margin:0;padding:0;list-style:none;}
+.mm-guide-dd__list li{font-size:14px;color:var(--mm-ink-900);line-height:1.55;padding:7px 0 7px 26px;position:relative;border-bottom:1px solid rgba(0,0,0,.05);}
+.mm-guide-dd__list li:last-child{border-bottom:0;}
+.mm-guide-dd__list li::before{position:absolute;left:0;top:7px;font-weight:700;font-size:15px;}
+.mm-guide-dd__col--do .mm-guide-dd__list li::before{content:"✓";color:var(--mm-band-expert);}
+.mm-guide-dd__col--dont .mm-guide-dd__list li::before{content:"✕";color:var(--mm-danger);}
+
+/* Band improvement tiers */
+.mm-guide-tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--mm-s-4);}
+@media (max-width:820px){.mm-guide-tiers{grid-template-columns:1fr;}}
+.mm-guide-tier{background:var(--mm-bg-surface);border:1px solid var(--mm-border-subtle);border-radius:var(--mm-r-lg);padding:var(--mm-s-5);box-shadow:var(--mm-e-1);border-top:3px solid var(--mm-navy-700);}
+.mm-guide-tier--b6{border-top-color:var(--mm-band-competent);}
+.mm-guide-tier--b7{border-top-color:var(--mm-band-good);}
+.mm-guide-tier--b8{border-top-color:var(--mm-band-expert);}
+.mm-guide-tier__band{font-family:var(--mm-f-mono);font-size:12px;font-weight:600;letter-spacing:.06em;color:var(--mm-fg-tertiary);text-transform:uppercase;}
+.mm-guide-tier__title{font-family:var(--mm-f-display);font-size:19px;font-weight:500;color:var(--mm-navy-900);margin:4px 0 var(--mm-s-3);}
+.mm-guide-tier__list{margin:0;padding-left:18px;}
+.mm-guide-tier__list li{font-size:13.5px;color:var(--mm-fg-secondary);line-height:1.65;margin-bottom:6px;}
+
+/* Formula callouts */
+.mm-guide-formulas{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--mm-s-4);}
+@media (max-width:700px){.mm-guide-formulas{grid-template-columns:1fr;}}
+.mm-guide-fcard{background:var(--mm-bg-surface);border:1px solid var(--mm-border-subtle);border-left:3px solid var(--mm-gold-500);border-radius:var(--mm-r-md);padding:var(--mm-s-5);box-shadow:var(--mm-e-1);}
+.mm-guide-fcard__label{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--mm-fg-accent);margin-bottom:var(--mm-s-2);}
+.mm-guide-fcard__body{font-size:15px;color:var(--mm-navy-900);line-height:1.6;font-family:var(--mm-f-display);font-style:italic;}
+
+/* Common mistakes list */
+.mm-guide-mistakes{display:flex;flex-direction:column;gap:var(--mm-s-3);}
+
+/* Checklist */
+.mm-guide-checklist{background:var(--mm-bg-surface);border:1px solid var(--mm-border-subtle);border-radius:var(--mm-r-lg);padding:var(--mm-s-5);box-shadow:var(--mm-e-1);}
+.mm-guide-check{
+  display:flex;align-items:flex-start;gap:var(--mm-s-3);
+  padding:var(--mm-s-3) var(--mm-s-2);cursor:pointer;
+  border-bottom:1px solid var(--mm-border-subtle);
+  transition:background var(--mm-dur-quick) var(--mm-ease);
+}
+.mm-guide-check:last-child{border-bottom:0;}
+.mm-guide-check:hover{background:var(--mm-navy-50);}
+.mm-guide-check__box{
+  flex:0 0 auto;width:22px;height:22px;border-radius:var(--mm-r-sm);
+  border:2px solid var(--mm-navy-300);display:grid;place-items:center;
+  margin-top:1px;transition:all var(--mm-dur-quick) var(--mm-ease);color:transparent;
+}
+.mm-guide-check__box svg{width:14px;height:14px;}
+.mm-guide-check.is-checked .mm-guide-check__box{
+  background:var(--mm-band-expert);border-color:var(--mm-band-expert);color:#fff;
+  -webkit-print-color-adjust:exact;print-color-adjust:exact;
+}
+.mm-guide-check__text{font-size:14.5px;color:var(--mm-ink-900);line-height:1.5;}
+.mm-guide-check.is-checked .mm-guide-check__text{color:var(--mm-fg-tertiary);text-decoration:line-through;}
+.mm-guide-check__progress{font-size:12.5px;color:var(--mm-fg-tertiary);margin-top:var(--mm-s-4);text-align:right;font-family:var(--mm-f-mono);}
+
+/* Warm-up prompts */
+.mm-guide-warm{display:flex;flex-direction:column;gap:var(--mm-s-3);}
+.mm-guide-warm__item{background:var(--mm-bg-surface);border:1px solid var(--mm-border-subtle);border-radius:var(--mm-r-md);padding:var(--mm-s-4) var(--mm-s-5);box-shadow:var(--mm-e-1);}
+.mm-guide-warm__top{display:flex;align-items:center;gap:var(--mm-s-3);flex-wrap:wrap;}
+.mm-guide-warm__num{flex:0 0 auto;width:28px;height:28px;border-radius:var(--mm-r-full);display:grid;place-items:center;font-family:var(--mm-f-mono);font-size:13px;font-weight:600;background:var(--mm-gold-50);color:var(--mm-gold-900);-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+.mm-guide-warm__prompt{flex:1;font-size:14.5px;color:var(--mm-navy-900);min-width:180px;}
+.mm-guide-warm__toggle{flex:0 0 auto;font-size:12px;font-weight:600;letter-spacing:.04em;color:var(--mm-navy-700);background:transparent;box-shadow:inset 0 0 0 1.5px var(--mm-navy-300);border-radius:var(--mm-r-sm);padding:6px 12px;cursor:pointer;white-space:nowrap;}
+.mm-guide-warm__toggle:hover{background:var(--mm-navy-50);}
+.mm-guide-warm__sample{display:none;margin-top:var(--mm-s-4);padding-top:var(--mm-s-3);border-top:1px dashed var(--mm-border-subtle);}
+.mm-guide-warm__item.is-open .mm-guide-warm__sample{display:block;}
+.mm-guide-warm__sh{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--mm-fg-accent);margin-bottom:var(--mm-s-2);}
+.mm-guide-warm__list{margin:0;padding-left:18px;}
+.mm-guide-warm__list li{font-size:13.5px;color:var(--mm-fg-secondary);line-height:1.65;margin-bottom:4px;}
+
+/* Closing confidence message */
+.mm-guide-closing{
+  background:linear-gradient(135deg,var(--mm-navy-900),var(--mm-navy-800));
+  color:var(--mm-navy-50);border-radius:var(--mm-r-2xl);
+  padding:var(--mm-s-8) var(--mm-s-7);text-align:center;box-shadow:var(--mm-e-2);
+  -webkit-print-color-adjust:exact;print-color-adjust:exact;
+}
+.mm-guide-closing__quote{font-family:var(--mm-f-display);font-size:clamp(20px,2.5vw,28px);line-height:1.5;font-weight:500;margin:0 auto var(--mm-s-5);max-width:680px;}
+.mm-guide-closing__quote em{color:var(--mm-gold-400);font-style:italic;}
+.mm-guide-closing__sign{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--mm-gold-400);}
+
+/* Disclaimer */
+.mm-guide-note{
+  background:var(--mm-info-bg);border:1px solid #cfdcec;border-radius:var(--mm-r-md);
+  padding:var(--mm-s-4) var(--mm-s-5);font-size:13px;color:var(--mm-ink-700);line-height:1.6;
+  margin-top:var(--mm-s-5);-webkit-print-color-adjust:exact;print-color-adjust:exact;
+}
+
+/* Back to top */
+.mm-guide-top{
+  position:fixed;right:24px;bottom:24px;z-index:45;
+  width:46px;height:46px;border-radius:var(--mm-r-full);
+  background:var(--mm-navy-800);color:var(--mm-gold-400);
+  display:none;place-items:center;cursor:pointer;box-shadow:var(--mm-e-3);
+  transition:transform var(--mm-dur-quick) var(--mm-ease),opacity var(--mm-dur-std) var(--mm-ease);
+}
+.mm-guide-top.is-visible{display:grid;}
+.mm-guide-top:hover{transform:translateY(-2px);}
+
+/* Home "Tip of the day" */
+.mm-tip-card{
+  max-width:var(--mm-container);margin:0 auto var(--mm-s-8);
+  padding:0 var(--mm-s-6);
+}
+.mm-tip-card__inner{
+  display:flex;align-items:center;gap:var(--mm-s-4);flex-wrap:wrap;
+  background:var(--mm-gold-50);border:1px solid var(--mm-gold-200);
+  border-left:3px solid var(--mm-gold-500);border-radius:var(--mm-r-lg);
+  padding:var(--mm-s-5);
+}
+.mm-tip-card__icon{flex:0 0 auto;width:40px;height:40px;border-radius:var(--mm-r-md);background:var(--mm-navy-800);color:var(--mm-gold-400);display:grid;place-items:center;}
+.mm-tip-card__body{flex:1;min-width:200px;}
+.mm-tip-card__label{font-size:10px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--mm-gold-900);margin-bottom:4px;}
+.mm-tip-card__text{font-family:var(--mm-f-display);font-size:18px;color:var(--mm-navy-900);line-height:1.4;}
+.mm-tip-card__link{flex:0 0 auto;}
+
+/* Setup "recommended before test" banner */
+.mm-guide-banner{
+  margin-top:var(--mm-s-5);padding:var(--mm-s-4) var(--mm-s-5);
+  background:rgba(212,175,55,.08);border:1px solid rgba(212,175,55,.3);
+  border-radius:var(--mm-r-md);display:flex;align-items:center;gap:var(--mm-s-4);flex-wrap:wrap;
+}
+.mm-guide-banner__text{flex:1;min-width:180px;font-size:13px;color:var(--mm-navy-200);line-height:1.5;}
+.mm-guide-banner__text strong{color:var(--mm-navy-50);font-weight:600;}
+
+/* ---- USER GUIDE PRINT (scoped; never touches report print) ---- */
+.mm-guide-print-footer{display:none;}
+@media print{
+  body.mm-guide-printing .mm-topbar,
+  body.mm-guide-printing .mm-guide-jump,
+  body.mm-guide-printing .mm-guide-top,
+  body.mm-guide-printing [data-print="hide"]{display:none!important;}
+  body.mm-guide-printing .mm-guide{max-width:none;margin:0;padding:0;}
+  body.mm-guide-printing .mm-guide-hero,
+  body.mm-guide-printing .mm-guide-closing{
+    background:#fff!important;color:var(--mm-navy-900)!important;
+    box-shadow:none;border:1px solid var(--mm-ink-100);
+  }
+  body.mm-guide-printing .mm-guide-hero__title,
+  body.mm-guide-printing .mm-guide-hero__eyebrow,
+  body.mm-guide-printing .mm-guide-hero__sub,
+  body.mm-guide-printing .mm-guide-hero__intro{color:var(--mm-navy-900)!important;}
+  body.mm-guide-printing .mm-guide-hero__title em{color:var(--mm-gold-700)!important;}
+  body.mm-guide-printing .mm-guide-closing__quote{color:var(--mm-navy-900)!important;}
+  body.mm-guide-printing .mm-guide-closing__quote em,
+  body.mm-guide-printing .mm-guide-closing__sign{color:var(--mm-gold-700)!important;}
+  /* Force all accordion + warm-up panels open for print */
+  body.mm-guide-printing .mm-guide-acc__body,
+  body.mm-guide-printing .mm-guide-warm__sample{display:block!important;}
+  body.mm-guide-printing .mm-guide-acc__chev,
+  body.mm-guide-printing .mm-guide-warm__toggle{display:none!important;}
+  /* Page-break integrity */
+  body.mm-guide-printing .mm-guide-section{break-inside:auto;}
+  body.mm-guide-printing .mm-guide-shead{break-after:avoid;}
+  body.mm-guide-printing .mm-guide-part,
+  body.mm-guide-printing .mm-guide-acc__item,
+  body.mm-guide-printing .mm-guide-ocard,
+  body.mm-guide-printing .mm-guide-dd__col,
+  body.mm-guide-printing .mm-guide-tier,
+  body.mm-guide-printing .mm-guide-fcard,
+  body.mm-guide-printing .mm-guide-warm__item,
+  body.mm-guide-printing .mm-guide-check,
+  body.mm-guide-printing .mm-guide-cue,
+  body.mm-guide-printing .mm-guide-ex,
+  body.mm-guide-printing .mm-guide-closing{break-inside:avoid;}
+  body.mm-guide-printing .mm-guide-shead__title,
+  body.mm-guide-printing .mm-guide-part__title{orphans:3;widows:3;}
+  /* Running footer on every printed page */
+  body.mm-guide-printing .mm-guide-print-footer{
+    display:block;position:fixed;left:0;right:0;bottom:0;
+    height:12mm;padding:2.5mm 12mm 0;box-sizing:border-box;background:#fff;z-index:50;
+  }
+  body.mm-guide-printing .mm-guide-print-footer__rule{height:1px;background:var(--mm-gold-500);margin-bottom:2mm;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  body.mm-guide-printing .mm-guide-print-footer__row{font-size:8pt;color:var(--mm-ink-500);text-align:center;letter-spacing:.04em;}
 }
 
 </style>
@@ -7292,6 +7653,7 @@ function renderTopbar(){
       link("requests","Access Requests", pending?el("span",{class:"mm-req-count"},String(pending)):null),
       link("users","Users"),
       link("analytics","Analytics"),
+      link("guide","User Guide"),
       el("button",{class:`mm-nav__link ${state.view==="settings"?"is-active":""}`,
         title:"Settings",style:"display:inline-flex;align-items:center;gap:6px;",
         onclick:()=>state.go("settings")},[el("span",{html:ICONS.gear}),"Settings"])
@@ -7301,6 +7663,7 @@ function renderTopbar(){
       link("home","Overview"),
       link("library","Test Library"),
       link("sessions","My Reports"),
+      link("guide","User Guide"),
       link("profile","My Profile")
     ];
   }
@@ -7412,7 +7775,518 @@ function renderHome(){
       el("div",{style:"display:flex;flex-direction:column;gap:12px;"},rows)
     ]);
   }
-  return el("div",{},[hero, strip, recentBlock].filter(Boolean));
+  // Speaking Tip of the Day — links to the User Guide
+  const tipText = SPEAKING_TIPS[Math.floor(Math.random()*SPEAKING_TIPS.length)];
+  const tipCard = el("section",{class:"mm-tip-card"},[
+    el("div",{class:"mm-tip-card__inner"},[
+      el("div",{class:"mm-tip-card__icon",html:ICONS.book}),
+      el("div",{class:"mm-tip-card__body"},[
+        el("div",{class:"mm-tip-card__label"},"Speaking tip of the day"),
+        el("div",{class:"mm-tip-card__text"},tipText)
+      ]),
+      el("div",{class:"mm-tip-card__link"},
+        el("button",{class:"mm-btn mm-btn--secondary mm-btn--mini",onclick:()=>state.go("guide")},"Open User Guide"))
+    ])
+  ]);
+
+  return el("div",{},[hero, strip, tipCard, recentBlock].filter(Boolean));
+}
+
+/* ------------------------------------------------------------
+   USER GUIDE VIEW — student-facing IELTS Speaking guide
+   Self-contained. No new dependencies. Interactivity is applied
+   via direct DOM (no state._emit) to avoid re-render/scroll jumps.
+   Checklist state persists for the current session only.
+   ------------------------------------------------------------ */
+const GUIDE_CHECKLIST_KEY = "mm.ielts.guide.checklist";
+const SPEAKING_TIPS = [
+  "Give reasons, not just answers.",
+  "Examples make your answer stronger.",
+  "Clear pronunciation is more important than a fake accent.",
+  "Do not memorize. Prepare ideas instead.",
+  "In Part 2, use the preparation minute to plan keywords."
+];
+
+const GUIDE_SECTIONS = [
+  ["overview","Test Overview"],
+  ["parts","Test Parts"],
+  ["scoring","Scoring Criteria"],
+  ["dos","Dos & Don'ts"],
+  ["bands","Band Improvement"],
+  ["formulas","Emergency Formulas"],
+  ["mistakes","Common Mistakes"],
+  ["checklist","Checklist"],
+  ["warmup","Warm-up Practice"]
+];
+
+const GuideState = { _scrollHandler:null };
+
+function guideGetChecklist(){
+  try{ return JSON.parse(sessionStorage.getItem(GUIDE_CHECKLIST_KEY)) || {}; }
+  catch(e){ return {}; }
+}
+function guideSetChecklist(obj){
+  try{ sessionStorage.setItem(GUIDE_CHECKLIST_KEY, JSON.stringify(obj)); }catch(e){}
+}
+
+function printGuide(){
+  document.body.classList.add("mm-guide-printing");
+  // expand all collapsible panels so nothing is lost in print
+  $$(".mm-guide-acc__item").forEach(i=>i.classList.add("is-open"));
+  $$(".mm-guide-warm__item").forEach(i=>i.classList.add("is-open"));
+  const cleanup = ()=>document.body.classList.remove("mm-guide-printing");
+  window.addEventListener("afterprint", function once(){ cleanup(); window.removeEventListener("afterprint", once); });
+  setTimeout(()=>{ window.print(); setTimeout(cleanup, 1200); }, 60);
+}
+
+function renderGuide(){
+  /* ---- small builders --------------------------------------- */
+  const shead = (id,eyebrow,title,intro)=>el("div",{class:"mm-guide-shead"},[
+    el("div",{class:"mm-guide-shead__eyebrow"},eyebrow),
+    el("h2",{class:"mm-guide-shead__title"},title),
+    intro?el("p",{class:"mm-guide-shead__intro"},intro):null,
+    el("div",{class:"mm-guide-shead__rule"})
+  ].filter(Boolean));
+
+  const section = (id,children)=>el("section",{class:"mm-guide-section",id:`mm-guide-${id}`}, children);
+
+  const example = (q,weak,better)=>el("div",{class:"mm-guide-ex"},[
+    q?el("div",{class:"mm-guide-ex__q"},q):null,
+    el("div",{class:"mm-guide-ex__row"},[
+      el("div",{class:"mm-guide-ex__cell mm-guide-ex__cell--weak"},[
+        el("span",{class:"mm-guide-ex__tag"},"Weak"), weak ]),
+      el("div",{class:"mm-guide-ex__cell mm-guide-ex__cell--better"},[
+        el("span",{class:"mm-guide-ex__tag"},"Better"), better ])
+    ])
+  ].filter(Boolean));
+
+  const partRow = (key,val)=>el("div",{class:"mm-guide-part__row"},[
+    el("div",{class:"mm-guide-part__key"},key),
+    el("div",{class:"mm-guide-part__val"},val)
+  ]);
+
+  /* ================= HERO ===================================== */
+  const hero = el("section",{class:"mm-guide-hero"},[
+    el("div",{class:"mm-guide-hero__eyebrow"},"Mourad Mekki Teacher Toolkit"),
+    el("h1",{class:"mm-guide-hero__title",html:"IELTS Speaking <em>User Guide</em>"}),
+    el("p",{class:"mm-guide-hero__sub"},"Understand the test. Practise smarter. Speak with confidence."),
+    el("p",{class:"mm-guide-hero__intro"},"The IELTS Speaking test is a face-to-face style interview that lasts about 11–14 minutes and is divided into three parts. This guide helps you understand exactly what to expect, how to answer each part, which mistakes to avoid, and how to push your band score higher. Use it before you start a test, while you practise, and after you read your feedback."),
+    el("div",{class:"mm-guide-hero__actions"},[
+      el("button",{class:"mm-btn mm-btn--primary mm-btn--large",onclick:()=>state.go("library")},
+        ["Start practice test ", el("span",{html:ICONS.arrow})]),
+      el("button",{class:"mm-btn mm-btn--secondary mm-btn--large",style:"color:var(--mm-navy-50);box-shadow:inset 0 0 0 1.5px var(--mm-navy-300);",
+        onclick:()=>guideScrollTo("bands")},"View band score tips")
+    ])
+  ]);
+
+  /* ================= JUMP MENU ================================ */
+  const jump = el("nav",{class:"mm-guide-jump","data-print":"hide","aria-label":"Guide sections"},[
+    el("div",{class:"mm-guide-jump__scroll"},
+      GUIDE_SECTIONS.map(([id,label])=>el("button",{
+        class:"mm-guide-jump__link", "data-jump":id,
+        onclick:()=>guideScrollTo(id)
+      },label))
+    )
+  ]);
+
+  /* ================= A · OVERVIEW CARDS ======================= */
+  const overview = section("overview",[
+    shead("overview","Section A","Quick test overview","A fast snapshot of what the test involves before we look at each part in detail."),
+    el("div",{class:"mm-guide-grid"},[
+      el("div",{class:"mm-guide-ocard"},[
+        el("div",{class:"mm-guide-ocard__label"},"Total time"),
+        el("div",{class:"mm-guide-ocard__value"},"11–14 min"),
+        el("div",{class:"mm-guide-ocard__note"},"A single face-to-face style interview from start to finish.")
+      ]),
+      el("div",{class:"mm-guide-ocard"},[
+        el("div",{class:"mm-guide-ocard__label"},"Number of parts"),
+        el("div",{class:"mm-guide-ocard__value"},"3"),
+        el("div",{class:"mm-guide-ocard__note"},"Interview, a long solo turn from a cue card, and a discussion.")
+      ]),
+      el("div",{class:"mm-guide-ocard"},[
+        el("div",{class:"mm-guide-ocard__label"},"Scoring criteria"),
+        el("div",{class:"mm-guide-ocard__value",style:"font-size:18px;line-height:1.3;"},"4 criteria"),
+        el("div",{class:"mm-guide-ocard__note"},"Fluency & Coherence · Lexical Resource · Grammatical Range & Accuracy · Pronunciation.")
+      ]),
+      el("div",{class:"mm-guide-ocard"},[
+        el("div",{class:"mm-guide-ocard__label"},"Best strategy"),
+        el("div",{class:"mm-guide-ocard__value",style:"font-size:18px;line-height:1.3;"},"Answer · Extend · Support"),
+        el("div",{class:"mm-guide-ocard__note"},"Answer naturally, extend clearly, and support your ideas with examples.")
+      ])
+    ])
+  ]);
+
+  /* ================= B · TEST PARTS =========================== */
+  const part1 = el("article",{class:"mm-guide-part"},[
+    el("div",{class:"mm-guide-part__head"},[
+      el("span",{class:"mm-guide-part__badge"},"Part 1"),
+      el("h3",{class:"mm-guide-part__title"},"Introduction & interview"),
+      el("span",{class:"mm-guide-part__dur"},"4–5 minutes")
+    ]),
+    partRow("Common topics","Home, family, work, studies, hobbies, food, weather, technology, and everyday life."),
+    partRow("What the examiner wants","Natural answers, clear basic communication, and personal responses about you."),
+    partRow("Best answer length","Usually 2–4 sentences. Not one word, not a long speech."),
+    partRow("Formula", el("span",{class:"mm-guide-formula"},"Answer + Detail + Example / Reason")),
+    example(
+      "Do you like reading?",
+      "Yes, I do.",
+      "Yes, I enjoy reading, especially short articles about technology. I usually read on my phone before sleeping because it helps me relax and learn new vocabulary."
+    )
+  ]);
+
+  const part2 = el("article",{class:"mm-guide-part"},[
+    el("div",{class:"mm-guide-part__head"},[
+      el("span",{class:"mm-guide-part__badge"},"Part 2"),
+      el("h3",{class:"mm-guide-part__title"},"Long turn · cue card"),
+      el("span",{class:"mm-guide-part__dur"},"1 min prep + 1–2 min speaking")
+    ]),
+    partRow("How it works","You receive a cue card and speak alone for up to two minutes. The examiner stays quiet and listens."),
+    partRow("Use your minute","The one-minute preparation is precious. Jot down keywords for each bullet point — not full sentences."),
+    partRow("Formula", el("span",{class:"mm-guide-formula"},"Past + Description + Details + Feeling + Final comment")),
+    el("div",{class:"mm-guide-cue"},[
+      el("p",{class:"mm-guide-cue__title"},"Describe a useful website you often visit."),
+      el("p",{class:"mm-guide-cue__lead"},"You should say:"),
+      el("ul",{class:"mm-guide-cue__list"},[
+        el("li",{},"what the website is"),
+        el("li",{},"when you use it"),
+        el("li",{},"why it is useful"),
+        el("li",{},"and explain how it helps you")
+      ])
+    ]),
+    el("div",{style:"margin-top:16px;"},[
+      el("div",{class:"mm-guide-shead__eyebrow",style:"margin-bottom:8px;"},"Model structure — not a memorised answer"),
+      el("ol",{class:"mm-guide-cue__list",style:"padding-left:20px;"},[
+        el("li",{},["Start directly: ", el("em",{},"“One useful website I often visit is…”")]),
+        el("li",{},["Add background: ", el("em",{},"“I started using it when…”")]),
+        el("li",{},"Give two or three details."),
+        el("li",{},"Explain why it matters to you."),
+        el("li",{},["End naturally: ", el("em",{},"“That is why I find it very practical.”")])
+      ])
+    ])
+  ]);
+
+  const part3 = el("article",{class:"mm-guide-part"},[
+    el("div",{class:"mm-guide-part__head"},[
+      el("span",{class:"mm-guide-part__badge"},"Part 3"),
+      el("h3",{class:"mm-guide-part__title"},"Two-way discussion"),
+      el("span",{class:"mm-guide-part__dur"},"4–5 minutes")
+    ]),
+    partRow("What changes","Questions become more abstract and opinion-based, linked to the Part 2 topic but broader."),
+    partRow("Common styles","Comparison, advantages and disadvantages, causes, effects, future predictions, and social issues."),
+    partRow("Best answer length","4–6 sentences. Develop your idea rather than giving a quick reply."),
+    partRow("Formula", el("span",{class:"mm-guide-formula"},"Opinion + Reason + Example + Contrast / Result")),
+    example(
+      "How has technology changed education?",
+      "It changed education a lot.",
+      "Technology has made education more flexible because students can now access lessons, videos, and practice materials from anywhere. For example, many learners use online platforms to prepare for exams at home. However, it can also distract students if they do not use it carefully."
+    )
+  ]);
+
+  const parts = section("parts",[
+    shead("parts","Section B","The three parts in detail","Each part tests something slightly different. Learn the rhythm of each one and you will always know what to do next."),
+    part1, part2, part3
+  ]);
+
+  /* ================= C · SCORING ACCORDION ==================== */
+  const critItem = (n,title,explain,tips)=>{
+    const item = el("div",{class:"mm-guide-acc__item"},[
+      el("button",{class:"mm-guide-acc__btn",onclick:(e)=>{
+        e.currentTarget.closest(".mm-guide-acc__item").classList.toggle("is-open");
+      }},[
+        el("span",{class:"mm-guide-acc__num"},String(n)),
+        el("span",{class:"mm-guide-acc__title"},title),
+        el("span",{class:"mm-guide-acc__chev",html:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>'})
+      ]),
+      el("div",{class:"mm-guide-acc__body"},[
+        el("div",{class:"mm-guide-acc__cols"},[
+          el("div",{},[
+            el("p",{class:"mm-guide-acc__h"},"What it measures"),
+            el("ul",{class:"mm-guide-acc__list"}, explain.map(x=>el("li",{},x)))
+          ]),
+          el("div",{},[
+            el("p",{class:"mm-guide-acc__h"},"Practical tips"),
+            el("ul",{class:"mm-guide-acc__list"}, tips.map(x=>el("li",{},x)))
+          ])
+        ])
+      ])
+    ]);
+    return item;
+  };
+
+  const scoring = section("scoring",[
+    shead("scoring","Section C","How your speaking score is judged","Your overall band is the average of four equally-weighted criteria. Tap each one to see what it means and how to improve it."),
+    el("div",{class:"mm-guide-acc"},[
+      critItem(1,"Fluency & Coherence",
+        ["Speaking without too many long pauses.","Connecting your ideas clearly.","Developing answers instead of stopping early.","Speaking from real thought, not a memorised script."],
+        ["Use simple linking phrases: first, also, for example, however, because of this.","Do not speak too fast — clarity beats speed.","If you make a mistake, repair it calmly and keep going."]),
+      critItem(2,"Lexical Resource",
+        ["The range of vocabulary you can use.","Choosing words accurately.","Using topic-related vocabulary.","Paraphrasing when you can't find the exact word."],
+        ["Use natural phrases, not forced “big words”.","Learn topic vocabulary in chunks, not single words.","Avoid repeating the same word many times in one answer."]),
+      critItem(3,"Grammatical Range & Accuracy",
+        ["Variety in your sentence structures.","Using correct tenses.","Forming complex sentences.","Keeping control of your errors."],
+        ["Mix short and longer sentences for rhythm.","Use linkers like because, although, while, which, when, if.","Do not use grammar you cannot control — accuracy matters."]),
+      critItem(4,"Pronunciation",
+        ["Clarity and being easy to understand.","Word stress and sentence stress.","Intonation and rhythm.","Sounding natural rather than flat."],
+        ["Speak clearly, not artificially.","Pause between ideas so the listener can follow.","Stress the important words in a sentence.","Do not try to copy a fake accent — be understandable."])
+    ])
+  ]);
+
+  /* ================= D · DOS & DON'TS ========================= */
+  const DOS = [
+    "Give extended answers, but stay relevant.",
+    "Use examples from your own life.",
+    "Ask for clarification if you genuinely do not understand.",
+    "Use natural linking words.",
+    "Correct yourself calmly if you make a mistake.",
+    "Speak clearly and confidently.",
+    "Use the 1-minute preparation time in Part 2.",
+    "Show your real language ability.",
+    "Answer the question directly before adding details.",
+    "Practise with a timer."
+  ];
+  const DONTS = [
+    "Don't memorise complete answers.",
+    "Don't give one-word answers.",
+    "Don't use complicated vocabulary incorrectly.",
+    "Don't speak too fast.",
+    "Don't stay silent for a long time.",
+    "Don't repeat the question too much.",
+    "Don't change the topic completely.",
+    "Don't panic after one mistake.",
+    "Don't use fake idioms unnaturally.",
+    "Don't focus only on accent; focus on clarity."
+  ];
+  const dos = section("dos",[
+    shead("dos","Section D","Dos & don'ts","Small habits that examiners notice. Keep the left column; lose the right one."),
+    el("div",{class:"mm-guide-dd"},[
+      el("div",{class:"mm-guide-dd__col mm-guide-dd__col--do"},[
+        el("h3",{class:"mm-guide-dd__title"},"Do"),
+        el("ul",{class:"mm-guide-dd__list"}, DOS.map(x=>el("li",{},x)))
+      ]),
+      el("div",{class:"mm-guide-dd__col mm-guide-dd__col--dont"},[
+        el("h3",{class:"mm-guide-dd__title"},"Don't"),
+        el("ul",{class:"mm-guide-dd__list"}, DONTS.map(x=>el("li",{},x)))
+      ])
+    ])
+  ]);
+
+  /* ================= E · BAND IMPROVEMENT ===================== */
+  const bands = section("bands",[
+    shead("bands","Section E","How to push your band higher","Find your current level and focus on the next realistic step. You don't need everything at once."),
+    el("div",{class:"mm-guide-tiers"},[
+      el("div",{class:"mm-guide-tier mm-guide-tier--b6"},[
+        el("div",{class:"mm-guide-tier__band"},"Band 5 → 6"),
+        el("h3",{class:"mm-guide-tier__title"},"Build the basics"),
+        el("ul",{class:"mm-guide-tier__list"},[
+          el("li",{},"Extend answers from one sentence to three."),
+          el("li",{},"Use basic linking words correctly."),
+          el("li",{},"Reduce long pauses."),
+          el("li",{},"Practise common Part 1 topics."),
+          el("li",{},"Control your most common grammar errors.")
+        ])
+      ]),
+      el("div",{class:"mm-guide-tier mm-guide-tier--b7"},[
+        el("div",{class:"mm-guide-tier__band"},"Band 6 → 7"),
+        el("h3",{class:"mm-guide-tier__title"},"Develop & vary"),
+        el("ul",{class:"mm-guide-tier__list"},[
+          el("li",{},"Give more developed answers."),
+          el("li",{},"Use topic vocabulary naturally."),
+          el("li",{},"Add examples and comparisons."),
+          el("li",{},"Use more complex sentences accurately."),
+          el("li",{},"Improve pronunciation clarity and rhythm.")
+        ])
+      ]),
+      el("div",{class:"mm-guide-tier mm-guide-tier--b8"},[
+        el("div",{class:"mm-guide-tier__band"},"Band 7 → 8"),
+        el("h3",{class:"mm-guide-tier__title"},"Speak with nuance"),
+        el("ul",{class:"mm-guide-tier__list"},[
+          el("li",{},"Speak with flexibility."),
+          el("li",{},"Avoid mechanical, rehearsed answers."),
+          el("li",{},"Use precise vocabulary."),
+          el("li",{},"Handle abstract Part 3 questions confidently."),
+          el("li",{},["Show nuance: ", el("em",{},"“It depends”, “In some cases”, “From my perspective”.")])
+        ])
+      ])
+    ])
+  ]);
+
+  /* ================= F · EMERGENCY FORMULAS =================== */
+  const fcard = (label,body)=>el("div",{class:"mm-guide-fcard"},[
+    el("div",{class:"mm-guide-fcard__label"},label),
+    el("div",{class:"mm-guide-fcard__body"},body)
+  ]);
+  const formulas = section("formulas",[
+    shead("formulas","Section F","When you don't know what to say","Memorise these flexible openers, not whole answers. They keep you fluent while you think."),
+    el("div",{class:"mm-guide-formulas"},[
+      fcard("1 · Giving an opinion","“I would say that… because… For example…”"),
+      fcard("2 · Buying time naturally","“That's an interesting question. I haven't thought about it deeply, but I suppose…”"),
+      fcard("3 · Part 3 abstract answer","“In general, I think… The main reason is… However, it also depends on…”"),
+      fcard("4 · Comparing","“Compared with the past, people today… This is mainly because…”"),
+      fcard("5 · Advantages & disadvantages","“One clear advantage is… However, a possible drawback is…”"),
+      fcard("6 · Prediction","“In the future, I believe… because technology / society / education is changing quickly.”")
+    ])
+  ]);
+
+  /* ================= G · COMMON MISTAKES ====================== */
+  const mistakes = section("mistakes",[
+    shead("mistakes","Section G","Common mistakes & better versions","Same idea, stronger delivery. Notice how each fix adds a reason, a correction, or a clearer structure."),
+    el("div",{class:"mm-guide-mistakes"},[
+      example(null,"“I like it because it is good.”","“I like it because it is convenient and saves me a lot of time, especially when I am busy.”"),
+      example(null,"“Technology is very important in all things.”","“Technology is important in many areas of life, especially education, communication, and work.”"),
+      example(null,"“I am agree.”","“I agree.”"),
+      example(null,"“People is using internet too much.”","“People are using the internet too much.”"),
+      example(null,"“I don't know. Finished.”","“I'm not completely sure, but I think one possible reason is…”")
+    ])
+  ]);
+
+  /* ================= H · CHECKLIST ============================ */
+  const CHECK_ITEMS = [
+    "I am in a quiet place.",
+    "My microphone works.",
+    "I understand the three parts of the test.",
+    "I will answer naturally, not memorise.",
+    "I will extend my answers with reasons and examples.",
+    "I will not panic if I make a mistake.",
+    "I will speak clearly and at a natural speed.",
+    "I will use the timer seriously."
+  ];
+  const saved = guideGetChecklist();
+  const checkRows = CHECK_ITEMS.map((text,i)=>{
+    const isChecked = !!saved[i];
+    const row = el("div",{class:`mm-guide-check ${isChecked?"is-checked":""}`,role:"checkbox","aria-checked":isChecked?"true":"false",tabindex:"0"},[
+      el("span",{class:"mm-guide-check__box",html:ICONS.check}),
+      el("span",{class:"mm-guide-check__text"},text)
+    ]);
+    const toggle = ()=>{
+      const now = row.classList.toggle("is-checked");
+      row.setAttribute("aria-checked", now?"true":"false");
+      const obj = guideGetChecklist(); obj[i]=now; guideSetChecklist(obj);
+      guideUpdateProgress();
+    };
+    row.addEventListener("click", toggle);
+    row.addEventListener("keydown",(e)=>{ if(e.code==="Space"||e.code==="Enter"){ e.preventDefault(); toggle(); } });
+    return row;
+  });
+  const progress = el("div",{class:"mm-guide-check__progress",id:"mm-guide-progress"});
+  const checklist = section("checklist",[
+    shead("checklist","Section I","Before you start — checklist","Run through this the moment before you begin. Your ticks are remembered for this session only."),
+    el("div",{class:"mm-guide-checklist"},[ ...checkRows, progress ])
+  ]);
+
+  /* ================= J · WARM-UP ============================== */
+  const WARMUPS = [
+    ["Introduce yourself in 20 seconds.",
+      ["Name + where you're from.","One sentence about what you do (study / work).","One detail you enjoy about it."]],
+    ["Talk about your hometown for 30 seconds.",
+      ["Where it is + how big it is.","One thing it is known for.","Whether you like living there, and why."]],
+    ["Describe something useful you bought recently.",
+      ["What it is + when you bought it.","Why you needed it.","How it has helped you since."]],
+    ["Give your opinion about online learning.",
+      ["Your overall opinion in one sentence.","One reason + a quick example.","A balancing point: “However, it also…”"]],
+    ["Compare studying alone and studying with a teacher.",
+      ["One clear advantage of studying alone.","One clear advantage of having a teacher.","Which you prefer, and why it depends on the situation."]]
+  ];
+  const warmRows = WARMUPS.map(([prompt,structure],i)=>{
+    const item = el("div",{class:"mm-guide-warm__item"},[
+      el("div",{class:"mm-guide-warm__top"},[
+        el("span",{class:"mm-guide-warm__num"},String(i+1)),
+        el("span",{class:"mm-guide-warm__prompt"},prompt),
+        el("button",{class:"mm-guide-warm__toggle","data-print":"hide",onclick:(e)=>{
+          const it = e.currentTarget.closest(".mm-guide-warm__item");
+          const open = it.classList.toggle("is-open");
+          e.currentTarget.textContent = open ? "Hide structure" : "Show sample answer structure";
+        }},"Show sample answer structure")
+      ]),
+      el("div",{class:"mm-guide-warm__sample"},[
+        el("div",{class:"mm-guide-warm__sh"},"Sample answer structure"),
+        el("ul",{class:"mm-guide-warm__list"}, structure.map(s=>el("li",{},s)))
+      ])
+    ]);
+    return item;
+  });
+  const warmup = section("warmup",[
+    shead("warmup","Section J","Mini warm-up practice","Say each one out loud before a test. These are structures to follow — not answers to memorise."),
+    el("div",{class:"mm-guide-warm"}, warmRows)
+  ]);
+
+  /* ================= K · CLOSING + DISCLAIMER ================= */
+  const closing = el("section",{class:"mm-guide-closing",style:"margin-top:48px;"},[
+    el("p",{class:"mm-guide-closing__quote",html:"IELTS Speaking is not a memory test — it is a <em>communication</em> test. Your goal is to answer clearly, develop your ideas, and sound natural. Small mistakes are normal. What matters is how well you communicate overall."}),
+    el("div",{class:"mm-guide-closing__sign"},"Mourad Mekki Teacher Toolkit")
+  ]);
+
+  const disclaimer = el("p",{class:"mm-guide-note"},
+    "This guide reflects real IELTS Speaking expectations, but it does not guarantee any band score and is not a substitute for an official IELTS examiner. Use the platform's feedback together with your teacher's guidance for the best results.");
+
+  /* ================= PAGE TOOLBAR + ASSEMBLY ================= */
+  const toolbar = el("div",{class:"mm-toolbar","data-print":"hide",style:"justify-content:space-between;"},[
+    el("div",{class:"mm-page__eyebrow",style:"margin:0;"},"Preparation mini-course"),
+    el("div",{style:"display:flex;gap:10px;flex-wrap:wrap;"},[
+      el("button",{class:"mm-btn mm-btn--secondary mm-btn--mini",onclick:()=>state.go("library")},
+        [el("span",{html:ICONS.mic}),"  Start practice test"]),
+      el("button",{class:"mm-btn mm-btn--secondary mm-btn--mini",onclick:printGuide,title:"Print or save as PDF"},
+        [el("span",{html:ICONS.print}),"  Print / Save PDF"])
+    ])
+  ]);
+
+  const backTop = el("button",{class:"mm-guide-top","data-print":"hide",title:"Back to top","aria-label":"Back to top",
+    onclick:()=>window.scrollTo({top:0,behavior:"smooth"}),
+    html:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>'});
+
+  const printFooter = el("div",{class:"mm-guide-print-footer"},[
+    el("div",{class:"mm-guide-print-footer__rule"}),
+    el("div",{class:"mm-guide-print-footer__row"},"Mourad Mekki Teacher Toolkit · IELTS Speaking User Guide")
+  ]);
+
+  const root = el("div",{class:"mm-guide",id:"mm-guide-root"},[
+    toolbar, hero, jump,
+    overview, parts, scoring, dos, bands, formulas, mistakes, checklist, warmup,
+    closing, disclaimer, backTop, printFooter
+  ]);
+
+  // initial progress + scroll wiring (after the node is built)
+  setTimeout(()=>{ guideUpdateProgress(); guideAttachScroll(); }, 0);
+
+  return root;
+}
+
+/* ---- guide helpers that operate on the live DOM ---- */
+function guideScrollTo(id){
+  const target = document.getElementById(`mm-guide-${id}`);
+  if(target) target.scrollIntoView({behavior:"smooth",block:"start"});
+}
+function guideUpdateProgress(){
+  const el0 = document.getElementById("mm-guide-progress");
+  if(!el0) return;
+  const total = $$(".mm-guide-check").length;
+  const done = $$(".mm-guide-check.is-checked").length;
+  el0.textContent = `${done} of ${total} ready`;
+}
+function guideAttachScroll(){
+  if(GuideState._scrollHandler){
+    window.removeEventListener("scroll", GuideState._scrollHandler);
+    GuideState._scrollHandler = null;
+  }
+  const handler = ()=>{
+    const guideRoot = document.getElementById("mm-guide-root");
+    if(!guideRoot){ window.removeEventListener("scroll", handler); GuideState._scrollHandler=null; return; }
+    // back-to-top visibility
+    const btn = guideRoot.querySelector(".mm-guide-top");
+    if(btn) btn.classList.toggle("is-visible", window.scrollY > 600);
+    // active jump link (closest section above the offset line)
+    const offset = 170;
+    let active = null;
+    for(const [id] of GUIDE_SECTIONS){
+      const sec = document.getElementById(`mm-guide-${id}`);
+      if(sec && sec.getBoundingClientRect().top - offset <= 0) active = id;
+    }
+    guideRoot.querySelectorAll(".mm-guide-jump__link").forEach(l=>{
+      l.classList.toggle("is-active", l.getAttribute("data-jump")===active);
+    });
+  };
+  GuideState._scrollHandler = handler;
+  window.addEventListener("scroll", handler, {passive:true});
+  handler();
 }
 
 /* ------------------------------------------------------------
@@ -8284,6 +9158,15 @@ function renderSetup(){
         el("p",{class:"mm-setup__text"},[
           el("span",{class:`mm-diff-chip mm-diff-chip--${test.difficulty||"standard"}`,style:"display:inline-block;margin-right:8px;"},(test.difficulty||"standard").toUpperCase()),
           `Expected band range: ${test.expectedBandRange.min.toFixed(1)} – ${test.expectedBandRange.max.toFixed(1)} · ~${Math.round((test.estimatedDurationSec||720)/60)} min`
+        ]),
+
+        el("div",{class:"mm-guide-banner"},[
+          el("div",{class:"mm-guide-banner__text"},[
+            el("strong",{},"Recommended before you begin. "),
+            "Review the User Guide to understand the test parts, timing, and speaking strategies."
+          ]),
+          el("button",{class:"mm-btn mm-btn--secondary mm-btn--mini",style:"color:var(--mm-navy-50);box-shadow:inset 0 0 0 1.5px var(--mm-navy-300);flex:0 0 auto;",
+            onclick:()=>state.go("guide")},"Open User Guide")
         ]),
 
         el("div",{style:"text-align:left;margin-top:32px;"},[
@@ -10606,8 +11489,8 @@ function rgRenderParent(data, lang){
     : `Your child can communicate ideas clearly and respond to different questions. The next step is to use more precise vocabulary and organise longer answers more smoothly.`;
 
   const finalNote = isAR
-    ? "نشكر تعاونكم. مع تدريب بسيط ومنتظم سيتحسن أداء ابنكم/ابنتكم بشكل ملحوظ. نحن فخورون بالتقدم الذي تحقق."
-    : "Thank you for your support. With a little regular practice, your child's speaking will keep improving. We're proud of the progress so far.";
+    ? "يعكس هذا التقرير أداء جلسة محادثة واحدة، وهو نقطة بداية وليس حكماً نهائياً. والأهم هو الاستمرار في التدريب المنتظم والهادئ، خاصةً على النقطة المقترحة أعلاه. ودعمكم وتشجيعكم في المنزل يُحدثان فرقاً حقيقياً في رحلة التعلّم."
+    : "This report reflects one speaking session — a starting point, not a final verdict. What helps most is steady, low-pressure practice, especially on the focus area noted above. Your encouragement at home makes a real difference to the learning journey.";
 
   const page1 = el("div",{class:"rg-page"+(isAR?" report-ar":"")},[
     rgBrandHead(tr.parentTitle, tr.ielts, lang),
@@ -11845,6 +12728,7 @@ function mount(){
   let view;
   switch(state.view){
     case "home": view = renderHome(); break;
+    case "guide": view = renderGuide(); break;
     case "library": view = renderLibrary(); break;
     case "sessions": view = renderSessions(); break;
     case "settings": view = renderSettings(); break;
