@@ -1887,6 +1887,304 @@ a{color:var(--mm-fg-brand);text-decoration:none;}
   .mm-bell,.mm-user-cluster,.mm-filter-bar,.mm-table-actions{display:none!important;}
 }
 
+
+/* ============================================================
+   PHASE 6 · REPORT EXPORT SYSTEM — styles
+   Evidence blocks · generated report types · export panel ·
+   preview overlay · Arabic RTL. Cream / gold / navy preserved.
+   ============================================================ */
+
+/* ---- English evidence isolation (safe inside Arabic text) -- */
+.english-evidence{
+  direction:ltr;unicode-bidi:isolate;display:inline-block;
+  text-align:left;
+}
+
+/* ---- Pronunciation credibility note (full report) ---------- */
+.mm-pron-credit{
+  margin-top:var(--mm-s-3);padding:10px 14px;
+  background:var(--mm-gold-50);border-left:3px solid var(--mm-gold-500);
+  border-radius:var(--mm-r-sm);
+  font-size:12.5px;line-height:1.55;color:var(--mm-navy-800);
+}
+
+/* ---- Worked transcript evidence (full report criterion) ---- */
+.mm-evidence{
+  margin-top:var(--mm-s-4);
+  border:1px solid var(--mm-border-subtle);
+  border-radius:var(--mm-r-md);
+  background:var(--mm-bg-surface);
+  overflow:hidden;
+}
+.mm-evidence__row{
+  display:grid;grid-template-columns:148px 1fr;gap:14px;
+  padding:10px 16px;border-top:1px solid var(--mm-border-subtle);
+}
+.mm-evidence__row:first-child{border-top:0;}
+.mm-evidence__k{
+  font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--mm-gold-700);padding-top:2px;
+}
+.mm-evidence__quote{font-size:13.5px;line-height:1.55;color:var(--mm-ink-700);font-style:italic;}
+.mm-evidence__improved{font-size:13.5px;line-height:1.55;color:var(--mm-navy-800);font-weight:600;}
+.mm-evidence__why{font-size:12.5px;line-height:1.55;color:var(--mm-fg-secondary);}
+.mm-evidence__target{
+  font-size:12.5px;line-height:1.55;color:var(--mm-navy-700);
+  background:var(--mm-navy-50);border-radius:var(--mm-r-sm);padding:6px 10px;
+}
+
+/* ============================================================
+   GENERATED REPORTS (student / diagnostic / parent / quick)
+   ============================================================ */
+.mm-report--gen{
+  background:var(--mm-ivory);color:var(--mm-fg-primary);
+  font-family:var(--mm-f-body);
+}
+.rg-page{ padding:4px 2px 8px; }
+.rg-page + .rg-page{ margin-top:34px; padding-top:30px; border-top:1px dashed var(--mm-border-subtle); }
+
+/* head */
+.rg-head{ text-align:center; margin-bottom:18px; }
+.rg-head__crest{
+  width:46px;height:46px;margin:0 auto 8px;background:var(--mm-navy-800);
+  border-radius:var(--mm-r-md);display:grid;place-items:center;
+  color:var(--mm-gold-500);font-family:var(--mm-f-display);font-size:24px;
+}
+.rg-head__brand{font-family:var(--mm-f-display);font-size:18px;color:var(--mm-navy-900);letter-spacing:.01em;}
+.rg-head__eyebrow{
+  font-size:10.5px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--mm-gold-700);margin-top:6px;
+}
+.rg-head__sub{font-size:13px;color:var(--mm-fg-secondary);margin-top:4px;}
+.rg-head__rule{height:2px;width:60px;margin:12px auto 0;background:var(--mm-gold-500);border-radius:2px;}
+
+/* meta */
+.rg-meta{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:12px;
+  background:var(--mm-cream);border-radius:var(--mm-r-md);
+  padding:14px 18px;margin-bottom:16px;
+}
+.rg-meta__l{font-size:9.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--mm-fg-tertiary);}
+.rg-meta__v{font-size:14px;color:var(--mm-navy-900);font-weight:600;margin-top:2px;}
+
+/* score strip */
+.rg-strip{
+  display:flex;gap:1px;background:var(--mm-border-subtle);
+  border-radius:var(--mm-r-md);overflow:hidden;margin-bottom:16px;
+}
+.rg-strip__cell{flex:1;background:var(--mm-navy-900);color:var(--mm-fg-on-navy);padding:12px 8px;text-align:center;}
+.rg-strip__v{font-family:var(--mm-f-display);font-size:22px;font-weight:600;color:var(--mm-gold-300);line-height:1;}
+.rg-strip__l{font-size:9px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--mm-navy-200);margin-top:5px;}
+
+/* criterion cards */
+.rg-crit{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:16px;}
+.rg-crit__card{
+  border:1px solid var(--mm-border-subtle);border-radius:var(--mm-r-md);
+  background:var(--mm-bg-surface);padding:12px 10px;text-align:center;
+}
+.rg-crit__band{font-family:var(--mm-f-display);font-size:24px;font-weight:600;color:var(--mm-navy-800);line-height:1;}
+.rg-crit__name{font-size:11px;color:var(--mm-fg-secondary);margin-top:6px;line-height:1.3;}
+
+/* generic block + lists */
+.rg-block{margin-bottom:14px;}
+.rg-block__title{
+  font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--mm-gold-700);margin-bottom:7px;
+}
+.rg-block--good{background:var(--mm-success-bg);border-radius:var(--mm-r-md);padding:12px 14px;}
+.rg-block--focus{background:var(--mm-warning-bg);border-radius:var(--mm-r-md);padding:12px 14px;}
+.rg-block--good .rg-block__title{color:var(--mm-success);}
+.rg-block--focus .rg-block__title{color:var(--mm-warning);}
+.rg-ul,.rg-ol{margin:0;padding-left:20px;}
+.rg-ul li,.rg-ol li{font-size:12.5px;line-height:1.6;color:var(--mm-fg-secondary);margin-bottom:4px;}
+.rg-cols2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;}
+.rg-cols2--tight{gap:10px;}
+.rg-prose__p,.rg-prose p{font-size:13px;line-height:1.65;color:var(--mm-fg-secondary);margin:0 0 8px;}
+.rg-sech{
+  font-family:var(--mm-f-display);font-size:16px;color:var(--mm-navy-900);
+  margin:22px 0 12px;padding-bottom:6px;border-bottom:2px solid var(--mm-gold-500);
+}
+.rg-muted{font-size:12px;color:var(--mm-fg-tertiary);font-style:italic;}
+
+/* evidence card */
+.rg-ev{
+  border:1px solid var(--mm-border-subtle);border-radius:var(--mm-r-md);
+  background:var(--mm-bg-surface);padding:12px 16px;margin-bottom:14px;
+}
+.rg-ev__label{
+  font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--mm-gold-700);margin:8px 0 3px;
+}
+.rg-ev__label:first-child{margin-top:0;}
+.rg-ev__quote{font-size:13px;line-height:1.55;color:var(--mm-ink-700);font-style:italic;}
+.rg-ev__improved{font-size:13px;line-height:1.55;color:var(--mm-navy-800);font-weight:600;}
+.rg-ev__why{font-size:12.5px;line-height:1.55;color:var(--mm-fg-secondary);}
+
+/* caution / target / final */
+.rg-caution{
+  font-size:11.5px;line-height:1.55;color:var(--mm-navy-800);
+  background:var(--mm-navy-50);border-radius:var(--mm-r-md);
+  padding:10px 14px;margin-bottom:14px;
+}
+.rg-target{
+  font-size:12.5px;line-height:1.55;color:var(--mm-navy-900);font-weight:600;
+  background:var(--mm-gold-50);border-left:3px solid var(--mm-gold-500);
+  border-radius:var(--mm-r-sm);padding:10px 14px;margin-bottom:12px;
+}
+.rg-final{background:var(--mm-gold-50);border-radius:var(--mm-r-md);padding:12px 16px;}
+
+/* diagnostic */
+.rg-diagblock{
+  border:1px solid var(--mm-border-subtle);border-radius:var(--mm-r-md);
+  padding:14px 16px;margin-bottom:12px;background:var(--mm-bg-surface);
+}
+.rg-diagblock__head{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-bottom:6px;}
+.rg-diagblock__name{font-family:var(--mm-f-display);font-size:16px;color:var(--mm-navy-900);}
+.rg-diagblock__band{font-size:12px;font-weight:700;color:var(--mm-gold-700);white-space:nowrap;}
+.rg-diagblock__exp{font-size:12.5px;line-height:1.6;color:var(--mm-fg-secondary);margin:0 0 10px;}
+.rg-diagblock__src{font-size:10px;font-weight:600;letter-spacing:.08em;color:var(--mm-fg-tertiary);margin-top:8px;text-transform:uppercase;}
+.rg-diagblock__target{font-size:12px;line-height:1.5;color:var(--mm-navy-700);background:var(--mm-navy-50);border-radius:var(--mm-r-sm);padding:7px 10px;margin-top:6px;}
+.rg-ptable{border:1px solid var(--mm-border-subtle);border-radius:var(--mm-r-md);overflow:hidden;margin-bottom:14px;}
+.rg-ptable__row{display:grid;grid-template-columns:1fr 90px;gap:10px;padding:8px 14px;border-top:1px solid var(--mm-border-subtle);font-size:12.5px;}
+.rg-ptable__row:first-child{border-top:0;}
+.rg-ptable__row--head{background:var(--mm-navy-900);color:var(--mm-fg-on-navy);font-weight:700;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;}
+.rg-chips{display:flex;flex-wrap:wrap;gap:6px;}
+.rg-chip{font-size:11.5px;padding:3px 9px;border-radius:var(--mm-r-full);background:var(--mm-tag-transcript-bg);color:var(--mm-tag-transcript-fg);}
+.rg-teaching{border:1px solid var(--mm-border-subtle);border-radius:var(--mm-r-md);padding:14px 16px;background:var(--mm-cream);}
+.rg-teaching__grid{display:grid;gap:8px;}
+.rg-teaching__grid > div{font-size:12.5px;line-height:1.55;color:var(--mm-fg-secondary);}
+.rg-prov{font-size:11.5px;line-height:1.6;color:var(--mm-fg-secondary);background:var(--mm-bg-surface-sunken);border-radius:var(--mm-r-md);padding:12px 16px;margin-bottom:14px;}
+
+/* footer */
+.rg-foot{margin-top:18px;}
+.rg-foot__rule{height:1px;background:var(--mm-gold-500);margin-bottom:6px;}
+.rg-foot__text{font-size:11px;font-weight:600;letter-spacing:.04em;color:var(--mm-navy-800);text-align:center;}
+
+/* QUICK summary — compact, single A4 */
+.mm-report--quick .rg-page--tight{padding:0;}
+.rg-qbanner{display:flex;align-items:center;gap:12px;padding-bottom:12px;margin-bottom:14px;border-bottom:2px solid var(--mm-gold-500);}
+.rg-qbanner__crest{width:38px;height:38px;background:var(--mm-navy-800);border-radius:var(--mm-r-sm);display:grid;place-items:center;color:var(--mm-gold-500);font-family:var(--mm-f-display);font-size:20px;}
+.rg-qbanner__brand{font-family:var(--mm-f-display);font-size:17px;color:var(--mm-navy-900);}
+.rg-qbanner__sub{font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--mm-gold-700);margin-top:2px;}
+.rg-qmeta{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:11.5px;color:var(--mm-fg-secondary);margin-bottom:12px;}
+.rg-qstrong{display:flex;gap:22px;font-size:12px;color:var(--mm-navy-800);margin:10px 0;}
+.rg-block--tight{margin-bottom:8px;}
+.rg-ol--tight li{font-size:11.5px;line-height:1.45;margin-bottom:2px;}
+.mm-report--quick .rg-crit{margin-bottom:12px;}
+.mm-report--quick .rg-strip{margin-bottom:12px;}
+.mm-report--quick .rg-ev{padding:9px 13px;margin-bottom:10px;}
+
+/* ============================================================
+   ARABIC PARENT REPORT — RTL
+   ============================================================ */
+.report-ar{
+  direction:rtl;text-align:right;
+  font-family:Tahoma,Arial,"Noto Naskh Arabic","Noto Sans Arabic",sans-serif;
+}
+.report-ar .rg-meta__l,.report-ar .rg-block__title,.report-ar .rg-ev__label,
+.report-ar .rg-head__eyebrow{ letter-spacing:0; }
+.report-ar .rg-ul,.report-ar .rg-ol{padding-left:0;padding-right:20px;}
+.report-ar .rg-strip__cell,.report-ar .rg-crit__card,.report-ar .rg-meta__item{text-align:center;}
+.report-ar .rg-qstrong,.report-ar .rg-qmeta{direction:rtl;}
+.report-ar .rg-ev,.report-ar .rg-block,.report-ar .rg-caution,
+.report-ar .rg-final,.report-ar .rg-target{direction:rtl;text-align:right;}
+.report-ar .rg-foot__text{direction:rtl;}
+/* English evidence quotes inside Arabic stay LTR + left aligned */
+.report-ar .english-evidence{text-align:left;}
+
+/* ============================================================
+   EXPORT PANEL (modal)
+   ============================================================ */
+.rg-modal{max-width:760px;width:calc(100vw - 40px);}
+.rg-panel__intro{font-size:13px;color:var(--mm-fg-secondary);line-height:1.55;margin:0 0 16px;}
+.rg-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+@media (max-width:620px){.rg-grid{grid-template-columns:1fr;}}
+.rg-card{
+  position:relative;text-align:left;cursor:pointer;
+  border:1.5px solid var(--mm-border-subtle);border-radius:var(--mm-r-lg);
+  background:var(--mm-bg-surface);padding:14px 16px;
+  transition:border-color var(--mm-dur-std) var(--mm-ease),box-shadow var(--mm-dur-std) var(--mm-ease),background var(--mm-dur-std) var(--mm-ease);
+  font-family:var(--mm-f-body);
+}
+.rg-card:hover{border-color:var(--mm-gold-400);box-shadow:var(--mm-e-2);}
+.rg-card.is-active{border-color:var(--mm-gold-500);background:var(--mm-gold-50);box-shadow:var(--mm-e-ring);}
+.rg-card__check{
+  position:absolute;top:12px;right:12px;width:22px;height:22px;border-radius:var(--mm-r-full);
+  background:var(--mm-gold-500);color:#fff;display:grid;place-items:center;opacity:0;transform:scale(.6);
+  transition:opacity var(--mm-dur-std) var(--mm-ease),transform var(--mm-dur-std) var(--mm-ease);
+}
+.rg-card.is-active .rg-card__check{opacity:1;transform:scale(1);}
+.rg-card__name{font-family:var(--mm-f-display);font-size:17px;color:var(--mm-navy-900);margin-bottom:6px;padding-right:26px;}
+.rg-card__row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:8px;}
+.rg-card__aud{font-size:10.5px;font-weight:600;letter-spacing:.04em;color:var(--mm-navy-700);background:var(--mm-navy-50);border-radius:var(--mm-r-full);padding:2px 9px;}
+.rg-card__len{font-size:10.5px;font-weight:600;letter-spacing:.04em;color:var(--mm-gold-800);background:var(--mm-gold-50);border-radius:var(--mm-r-full);padding:2px 9px;}
+.rg-card__desc{font-size:12px;line-height:1.5;color:var(--mm-fg-secondary);}
+.rg-card__lang{font-size:11px;color:var(--mm-fg-tertiary);margin-top:8px;font-weight:600;}
+.rg-langrow{margin-top:18px;padding-top:16px;border-top:1px dashed var(--mm-border-subtle);display:flex;align-items:center;gap:16px;flex-wrap:wrap;}
+.rg-langrow__label{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--mm-gold-700);}
+.rg-langseg{display:inline-flex;border:1px solid var(--mm-border-strong);border-radius:var(--mm-r-full);overflow:hidden;}
+.rg-langseg__btn{border:0;background:transparent;padding:8px 18px;font-size:13px;font-weight:600;color:var(--mm-fg-secondary);cursor:pointer;font-family:var(--mm-f-body);}
+.rg-langseg__btn.is-active{background:var(--mm-navy-800);color:var(--mm-gold-300);}
+.mm-btn--mini{padding:7px 12px;font-size:12.5px;}
+
+/* ============================================================
+   PREVIEW OVERLAY + OFF-SCREEN STAGE
+   ============================================================ */
+.rg-stage{position:fixed;left:-10000px;top:0;width:var(--mm-container-report);z-index:-1;background:#fff;}
+.rg-stage .mm-report{width:var(--mm-container-report);max-width:none;box-shadow:none;padding:44px 56px;}
+
+.rg-overlay{
+  position:fixed;inset:0;z-index:1000;background:rgba(10,22,40,.62);
+  backdrop-filter:blur(3px);display:flex;flex-direction:column;
+}
+.rg-overlay__bar{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:12px 18px;background:var(--mm-navy-900);color:var(--mm-fg-on-navy);
+}
+.rg-overlay__title{font-family:var(--mm-f-display);font-size:16px;color:var(--mm-gold-300);}
+.rg-overlay__actions{display:flex;gap:8px;}
+.rg-overlay__scroll{flex:1;overflow:auto;padding:24px;display:flex;justify-content:center;}
+.rg-overlay__paper{
+  width:var(--mm-container-report);max-width:100%;background:var(--mm-ivory);
+  box-shadow:var(--mm-e-4);border-radius:6px;padding:44px 56px;height:max-content;
+}
+.rg-overlay__paper .mm-report{width:100%;box-shadow:none;padding:0;background:transparent;}
+@media (max-width:880px){
+  .rg-overlay__scroll{padding:10px;}
+  .rg-overlay__paper{padding:24px 20px;}
+}
+
+/* ============================================================
+   PRINT — generated reports + preview + Arabic
+   ============================================================ */
+@media print{
+  /* When a preview overlay is open, print ONLY it. */
+  body.rg-preview-open .mm-report-wrap,
+  body.rg-preview-open .mm-topbar,
+  body.rg-preview-open .mm-print-footer,
+  body.rg-preview-open .mm-print-watermark{display:none!important;}
+  body.rg-preview-open .rg-overlay{
+    position:static;background:#fff;backdrop-filter:none;display:block;
+  }
+  body.rg-preview-open .rg-overlay__bar{display:none!important;}
+  body.rg-preview-open .rg-overlay__scroll{overflow:visible;padding:0;display:block;}
+  body.rg-preview-open .rg-overlay__paper{box-shadow:none;border-radius:0;padding:0;width:100%;max-width:none;}
+
+  /* Generated-report page integrity */
+  .rg-page{break-inside:auto;}
+  .rg-page + .rg-page{break-before:page;border-top:0;margin-top:0;padding-top:0;}
+  .rg-head,.rg-meta,.rg-strip,.rg-crit__card,.rg-block,.rg-ev,.rg-diagblock,
+  .rg-ptable__row,.rg-teaching,.rg-prov,.rg-caution,.rg-final,.rg-target,
+  .rg-qbanner,.rg-foot{break-inside:avoid;}
+  .rg-sech{break-after:avoid;}
+  .rg-block__title{break-after:avoid;}
+  .mm-evidence,.mm-evidence__row,.mm-pron-credit{break-inside:avoid;}
+  .rg-strip__cell,.rg-crit__band,.rg-card.is-active{
+    -webkit-print-color-adjust:exact;print-color-adjust:exact;color-adjust:exact;
+  }
+  .report-ar{direction:rtl;text-align:right;}
+}
+
 </style>
 </head>
 <body>
@@ -6597,8 +6895,14 @@ function ScoringEngine_analyze(session){
   // Feedback — four-move Performance Summary + criterion analyses
   const feedback = generateFeedback(session, criteria, overall, analyzed, partBands, partPenalties, relFindings);
   // Replace the legacy pronunciation analysis line with the v2 examiner comment (honest wording).
-  if(pronunciationDetail && pronunciationDetail.examinerComment && feedback.detailedAnalysis){
-    feedback.detailedAnalysis.pronunciation = pronunciationDetail.examinerComment;
+  // Always lead with the canonical credibility statement so pronunciation reads as a
+  // browser-based pedagogical estimate that IS part of this report (no "assessed separately").
+  if(feedback.detailedAnalysis){
+    const PRON_CREDIBILITY = "Pronunciation is estimated using browser-based audio and transcript signals. The score reflects intelligibility, listener effort, rhythm, pausing, chunking and speech clarity. It should be interpreted as a reliable classroom estimate, not a certified examiner score. ";
+    const tail = (pronunciationDetail && pronunciationDetail.examinerComment)
+      ? pronunciationDetail.examinerComment
+      : (feedback.detailedAnalysis.pronunciation || "");
+    feedback.detailedAnalysis.pronunciation = PRON_CREDIBILITY + tail;
   }
   const recommendations = generateRecommendations(criteria, overall, analyzed, partBands, partPenalties, relFindings, test);
 
@@ -9006,8 +9310,10 @@ function renderReport(){
   const btnStyle = "width:100%;justify-content:flex-start;padding:10px 12px;letter-spacing:.03em;";
   const actions = el("aside",{class:"mm-report-actions","data-print":"hide"},[
     el("div",{class:"mm-report-actions__title"},"Report actions"),
-    el("button",{class:"mm-btn mm-btn--primary",style:btnStyle,onclick:(e)=>downloadPDF(session, e.currentTarget)},
-      [el("span",{html:ICONS.download}),"Download PDF"]),
+    el("button",{class:"mm-btn mm-btn--primary",style:btnStyle,onclick:()=>rgOpenExportPanel(session, sc, test)},
+      [el("span",{html:ICONS.book}),"Choose report type…"]),
+    el("button",{class:"mm-btn mm-btn--secondary",style:btnStyle,onclick:(e)=>downloadPDF(session, e.currentTarget)},
+      [el("span",{html:ICONS.download}),"Download full PDF"]),
     el("button",{class:"mm-btn mm-btn--secondary",style:btnStyle,onclick:()=>window.print()},
       [el("span",{html:ICONS.print}),"Print report"]),
     el("button",{class:"mm-btn mm-btn--secondary",style:btnStyle,onclick:()=>downloadJSON(session)},
@@ -9157,9 +9463,53 @@ function renderCriterionAnalysis(sc, session){
         el("div",{class:"mm-analysis__band"}, item.band==null ? "provisional" : `Band ${item.band.toFixed(1)}`)
       ]),
       el("div",{class:"mm-analysis__text"}, sc.feedback.detailedAnalysis[item.key] || "—"),
-      evidence ? el("div",{class:"mm-analysis__evidence"}, evidence) : null
+      // Pronunciation credibility note — replaces any "assessed separately" framing.
+      item.key==="pronunciation" ? el("div",{class:"mm-pron-credit"},
+        "Accent is not penalised. The pronunciation estimate focuses on intelligibility, listener effort, rhythm, pausing, chunking and speech clarity, and is a reliable classroom estimate rather than a certified examiner score.") : null,
+      evidence ? el("div",{class:"mm-analysis__evidence"}, evidence) : null,
+      // Transcript-based worked example for every criterion.
+      mmAnalysisEvidenceBlock(item.key, item.band, session, sc)
     ]);
   }));
+}
+
+/* Worked transcript evidence appended to each criterion in the full report:
+   real quote · improved version · why it matters · next-band target. */
+function mmAnalysisEvidenceBlock(critKey, band, session, sc){
+  let ev;
+  try { ev = mmCriterionEvidence(critKey, band, session, sc); }
+  catch(e){ ev = null; }
+  if(!ev) return null;
+  const isPron = critKey==="pronunciation";
+  const rows = [];
+  if(ev.quote){
+    rows.push(el("div",{class:"mm-evidence__row"},[
+      el("div",{class:"mm-evidence__k"},"From the transcript"),
+      el("div",{class:"mm-evidence__quote english-evidence"}, "“"+ev.quote+"”")
+    ]));
+    if(ev.improved){
+      rows.push(el("div",{class:"mm-evidence__row"},[
+        el("div",{class:"mm-evidence__k"}, isPron?"Clearer delivery target":"Improved version"),
+        el("div",{class:"mm-evidence__improved english-evidence"}, "“"+ev.improved+"”")
+      ]));
+    }
+    if(ev.why || ev.note){
+      rows.push(el("div",{class:"mm-evidence__row"},[
+        el("div",{class:"mm-evidence__k"},"Why this matters"),
+        el("div",{class:"mm-evidence__why"}, ev.why || ev.note)
+      ]));
+    }
+  } else {
+    rows.push(el("div",{class:"mm-evidence__row"},[
+      el("div",{class:"mm-evidence__k"},"From the transcript"),
+      el("div",{class:"mm-evidence__why"}, ev.note || "No clear transcript sample available for this criterion.")
+    ]));
+  }
+  rows.push(el("div",{class:"mm-evidence__row"},[
+    el("div",{class:"mm-evidence__k"},"Next band target"),
+    el("div",{class:"mm-evidence__target"}, ev.nextTarget)
+  ]));
+  return el("div",{class:"mm-evidence"}, rows);
 }
 
 /* ------------------------------------------------------------
@@ -9564,6 +9914,937 @@ function downloadJSON(session){
   setTimeout(()=>{URL.revokeObjectURL(url);a.remove();},200);
 }
 
+/* ============================================================
+   MM REPORT ENGINE — Phase 6 export system
+   ------------------------------------------------------------
+   Adds, WITHOUT touching scoring / transcription / branding:
+     · Transcript-based evidence per criterion (quote + improved
+       version + why-it-matters + next-band target).
+     · A clean reportData model + report-type section maps.
+     · Five export types: Full · Student Summary · Teacher
+       Diagnostic · Parent-Friendly (EN/AR) · Quick Summary.
+     · An elegant "Choose Report Type" export panel + preview.
+   The PDF pipeline (downloadPDF) is reused for every type.
+   ============================================================ */
+
+/* ---- Criterion → parent-friendly label map ---------------- */
+const MM_CRIT = [
+  {key:"fluencyCoherence", label:"Fluency and Coherence", short:"Fluency",
+   parentEN:"Speaking flow and organization", parentAR:"تدفق الكلام وتنظيم الأفكار"},
+  {key:"lexical", label:"Lexical Resource", short:"Lexis",
+   parentEN:"Vocabulary use", parentAR:"استخدام المفردات"},
+  {key:"grammar", label:"Grammatical Range and Accuracy", short:"Grammar",
+   parentEN:"Grammar control", parentAR:"التحكم في القواعد"},
+  {key:"pronunciation", label:"Pronunciation", short:"Pronunciation",
+   parentEN:"Clarity of speech", parentAR:"وضوح النطق"}
+];
+
+/* ---- Translation dictionaries (parent report, EN + AR) ----- */
+const MM_REPORT_TR = {
+  en:{
+    parentTitle:"Parent-Friendly Report",
+    parentEyebrow:"For parents and guardians",
+    ielts:"IELTS Speaking Assessment",
+    brand:"Mourad Mekki Teacher Toolkit",
+    candidate:"Candidate", topic:"Test Topic", date:"Date",
+    speakingTime:"Speaking Time", overallLevel:"Overall Level",
+    overallBand:"Overall Band", confidence:"Confidence",
+    strongest:"Strongest Area", focus:"Main Focus",
+    summaryHead:"How your child is doing",
+    skillsHead:"The four speaking skills",
+    strengths:"What the student does well",
+    improve:"What to practise next",
+    example:"Example from the student's answer",
+    improved:"A better way to say it",
+    explainNote:"Why this is better",
+    weekly:"Simple practice for this week",
+    finalNote:"A note of encouragement",
+    cautionHead:"Important note",
+    caution:"This report is for learning and practice. Official IELTS scores are awarded only under official test conditions, through accredited centres.",
+    footer:"Mourad Mekki Teacher Toolkit · IELTS Coach"
+  },
+  ar:{
+    parentTitle:"تقرير مبسط لولي الأمر",
+    parentEyebrow:"موجَّه إلى أولياء الأمور",
+    ielts:"تقييم المحادثة في اختبار الأيلتس",
+    brand:"Mourad Mekki Teacher Toolkit",
+    candidate:"الطالب/الطالبة", topic:"موضوع الاختبار", date:"التاريخ",
+    speakingTime:"مدة التحدث", overallLevel:"المستوى العام",
+    overallBand:"الدرجة العامة", confidence:"درجة الثقة في التقييم",
+    strongest:"أقوى جانب", focus:"أهم جانب يحتاج إلى تطوير",
+    summaryHead:"كيف كان أداء ابنك/ابنتك",
+    skillsHead:"المهارات الأربع للمحادثة",
+    strengths:"نقاط القوة",
+    improve:"جوانب تحتاج إلى تطوير",
+    example:"مثال من إجابة الطالب/الطالبة",
+    improved:"صياغة أفضل",
+    explainNote:"شرح مبسط",
+    weekly:"تدريب مقترح لهذا الأسبوع",
+    finalNote:"رسالة تشجيعية",
+    cautionHead:"ملاحظة مهمة",
+    caution:"هذا التقرير مخصص للتعلم والتدريب، وليس نتيجة رسمية في اختبار الأيلتس. الدرجات الرسمية تصدر فقط في ظروف الاختبار الرسمية ومن خلال الجهات المعتمدة.",
+    footer:"أداة المعلم مراد مكي · مدرب الأيلتس"
+  }
+};
+function getReportLabel(key, language){
+  const d = MM_REPORT_TR[language] || MM_REPORT_TR.en;
+  return d[key] != null ? d[key] : (MM_REPORT_TR.en[key] || key);
+}
+function applyReportDirection(language){ return language==="ar" ? "rtl" : "ltr"; }
+
+/* ============================================================
+   TRANSCRIPT EVIDENCE — sentence pool + deterministic improver
+   ============================================================ */
+function mmSplitSentences(text){
+  if(!text) return [];
+  return String(text)
+    .replace(/\s+/g," ")
+    .split(/(?<=[.!?])\s+|(?<=[.!?])$/)
+    .map(s=>s.trim())
+    .filter(s=>s && s.split(/\s+/).length>=4);
+}
+function mmCandidateText(session){
+  const byPart = {};
+  const all = [];
+  for(const k of ["part1","part2","part3"]){
+    const turns = (session.candidateTurns||{})[k] || [];
+    let t = turns.map(c=>c.text).join(" ").trim();
+    if(!t) t = session.parts?.[k]?.transcriptionResult?.text || "";
+    byPart[k] = t;
+    if(t) all.push(t);
+  }
+  const joined = all.join(" ");
+  return { byPart, joined, sentences: mmSplitSentences(joined) };
+}
+
+/* Capitalise + tidy a rebuilt sentence. */
+function mmTidy(s){
+  s = s.replace(/\s+([,.!?])/g,"$1").replace(/\s{2,}/g," ").trim();
+  if(s) s = s.charAt(0).toUpperCase()+s.slice(1);
+  if(s && !/[.!?]$/.test(s)) s += ".";
+  return s;
+}
+
+/* Deterministic, meaning-preserving fixes. Returns {improved, types[]}
+   where types lists the kinds of change applied (empty ⇒ no change). */
+function mmFixGrammar(sentence){
+  let s = " "+sentence+" ";
+  const types = [];
+  const apply = (re, fn, type)=>{
+    if(re.test(s)){ s = s.replace(re, fn); if(!types.includes(type)) types.push(type); }
+  };
+  // Subject–verb agreement
+  apply(/\b(he|she|it)\s+don't\b/gi, (m,p)=>`${p} doesn't`, "agreement");
+  apply(/\b(he|she|it)\s+have\b(?!\s+(?:to|been|had))/gi, (m,p)=>`${p} has`, "agreement");
+  apply(/\b(he|she|it)\s+(go|do|say|make|take|come|see|want|need|like|live|work|play)\b/gi,
+        (m,p,v)=>`${p} ${v}${/[sxz]$|ch$|sh$/.test(v)?"es":v.endsWith("y")?v.slice(0,-1)+"ies":"s"}`, "agreement");
+  apply(/\b(I|we|they|you)\s+(was)\b/gi, (m,p)=>`${p} were`, "agreement");
+  // Preposition / collocation
+  apply(/\bdiscuss about\b/gi, ()=>"discuss", "preposition");
+  apply(/\bdepend in\b/gi, ()=>"depend on", "preposition");
+  apply(/\bdependent in\b/gi, ()=>"dependent on", "preposition");
+  apply(/\bdifferent than\b/gi, ()=>"different from", "preposition");
+  apply(/\bmarried with\b/gi, ()=>"married to", "preposition");
+  apply(/\binterested about\b/gi, ()=>"interested in", "preposition");
+  apply(/\bgood in\b/gi, ()=>"good at", "preposition");
+  // Missing article
+  apply(/\b(have|has|had|want|wanted|need|needed|bought|buy|got)\s+(car|book|phone|job|house|problem|question|idea|computer|laptop|degree)\b/gi,
+        (m,v,n)=>`${v} ${/^[aeiou]/i.test(n)?"an":"a"} ${n}`, "article");
+  // Progressive where simple present fits ("as I using" → "as I use")
+  apply(/\b(I|we|they|you)\s+using\b/gi, (m,p)=>`${p} use`, "tense");
+  apply(/\bas much as\s+(I|we|they|you)\s+(\w+)ing\b/gi,
+        (m,p,v)=>`as much as ${p} ${v}`, "tense");
+  // Double negative tidy
+  apply(/\bdon't\s+(\w+)\s+no\b/gi, (m,v)=>`don't ${v} any`, "agreement");
+  s = s.trim();
+  return { improved: mmTidy(s), types };
+}
+
+/* Light lexical upgrade — one precise swap, meaning preserved. */
+const MM_LEX_UP = {
+  "good":"excellent","nice":"pleasant","very good":"outstanding","a lot of":"a great deal of",
+  "lots of":"a wide range of","big":"significant","things":"aspects","stuff":"resources",
+  "get":"obtain","a lot":"considerably","really":"genuinely","important":"essential",
+  "happy":"delighted","sad":"disheartened","hard":"demanding","easy":"straightforward",
+  "spares you":"saves you","much time":"a considerable amount of time"
+};
+function mmFixLexis(sentence){
+  let s = sentence, type=null, hit=null;
+  const keys = Object.keys(MM_LEX_UP).sort((a,b)=>b.length-a.length);
+  for(const k of keys){
+    const re = new RegExp("\\b"+k.replace(/[.*+?^${}()|[\]\\]/g,"\\$&")+"\\b","i");
+    if(re.test(s)){ s = s.replace(re, (m)=>{
+        const up = MM_LEX_UP[k];
+        return /^[A-Z]/.test(m) ? up.charAt(0).toUpperCase()+up.slice(1) : up;
+      }); type="lexis"; hit=k; break; }
+  }
+  return { improved: type?mmTidy(s):sentence, type, hit };
+}
+
+/* Fluency: trim fillers / obvious repetition. */
+const MM_FILLERS = /\b(you know|i mean|kind of|sort of|like,|basically|i guess|i think,? )\b/gi;
+function mmFixFluency(sentence){
+  let s = sentence;
+  let changed=false;
+  if(MM_FILLERS.test(s)){ s = s.replace(MM_FILLERS, ""); changed=true; }
+  // collapse immediate word repeats ("the the", "I I")
+  const rep = s.replace(/\b(\w+)\s+\1\b/gi, "$1");
+  if(rep!==s){ s=rep; changed=true; }
+  return { improved: changed?mmTidy(s):sentence, changed };
+}
+
+/* Pick the candidate sentence most relevant to a criterion. */
+function mmPickSentence(sentences, predicate){
+  for(const s of sentences){ if(predicate(s)) return s; }
+  return null;
+}
+
+/* Build evidence for one criterion. Returns the full evidence object. */
+function mmCriterionEvidence(critKey, band, session, sc){
+  const pool = mmCandidateText(session);
+  const sentences = pool.sentences;
+  const ev = {
+    quote:null, improved:null, why:null, source:null,
+    nextTarget: mmNextTarget(critKey, band)
+  };
+  const noSample = ()=>{ ev.quote=null; ev.improved=null; ev.why=null;
+    ev.note="No clear transcript sample available for this criterion."; return ev; };
+
+  if(!sentences.length) return noSample();
+
+  if(critKey==="grammar"){
+    // Prefer a sentence containing a detected error.
+    const errs = ["part1","part2","part3"].flatMap(k=>sc.analyzed?.[k]?.metrics.errors||[]);
+    let chosen=null, fix=null;
+    for(const e of errs){
+      const frag = (e.text||"").trim(); if(!frag) continue;
+      const host = mmPickSentence(sentences, s=>s.toLowerCase().includes(frag.toLowerCase()));
+      if(host){ const f = mmFixGrammar(host); if(f.types.length){ chosen=host; fix=f; break; } }
+    }
+    if(!chosen){ // scan any sentence the grammar fixer can improve
+      for(const s of sentences){ const f=mmFixGrammar(s); if(f.types.length){ chosen=s; fix=f; break; } }
+    }
+    if(!chosen) return noSample();
+    ev.quote=chosen; ev.improved=fix.improved; ev.source="TRANSCRIPT + RULE";
+    ev.why = mmWhyGrammar(fix.types);
+    return ev;
+  }
+
+  if(critKey==="lexical"){
+    let chosen=null, fix=null;
+    for(const s of sentences){ const f=mmFixLexis(s); if(f.type){ chosen=s; fix=f; break; } }
+    if(!chosen){
+      // No vague word to swap → take the longest sentence as a paraphrase target.
+      chosen = sentences.slice().sort((a,b)=>b.length-a.length)[0];
+      ev.quote=chosen; ev.improved=null; ev.source="TRANSCRIPT";
+      ev.note="Vocabulary is already varied here. Aim to add one precise, topic-specific word in answers like this.";
+      return ev;
+    }
+    ev.quote=chosen; ev.improved=fix.improved; ev.source="TRANSCRIPT";
+    ev.why="This swaps a high-frequency word for a more precise, topic-appropriate choice, which lifts lexical resource without sounding unnatural.";
+    return ev;
+  }
+
+  if(critKey==="fluencyCoherence"){
+    let chosen=null, fix=null;
+    for(const s of sentences){ const f=mmFixFluency(s); if(f.changed){ chosen=s; fix=f; break; } }
+    if(!chosen){
+      chosen = mmPickSentence(sentences, s=>/\b(and|but|so|because|then)\b/i.test(s)) || sentences[0];
+      ev.quote=chosen; ev.improved=null; ev.source="TRANSCRIPT + AUDIO";
+      ev.note="Delivery here is reasonably connected. Add linking phrases (for instance, on the other hand, as a result) to organise longer turns.";
+      return ev;
+    }
+    ev.quote=chosen; ev.improved=fix.improved; ev.source="TRANSCRIPT + AUDIO";
+    ev.why="Removing fillers and repetition tightens the message, so ideas flow more smoothly and the listener follows the answer with less effort.";
+    return ev;
+  }
+
+  if(critKey==="pronunciation"){
+    const pd = sc.pronunciationDetail;
+    let span=null;
+    if(pd){
+      const list = (pd.possibleUnclearSpans||[]).concat(pd.unclearWords||[]);
+      for(const s of list){ const t=typeof s==="string"?s:(s.text||s.span||s.word); if(t){ span=t; break; } }
+    }
+    let host = span ? mmPickSentence(sentences, s=>s.toLowerCase().includes(String(span).toLowerCase())) : null;
+    if(!host) host = sentences.slice().sort((a,b)=>b.length-a.length)[0];
+    if(!host) return noSample();
+    ev.quote = host;
+    // For pronunciation the words are correct — the "improved version" is a
+    // clearer delivery target (chunking) of the same words, never a re-write.
+    ev.improved = mmChunk(host);
+    ev.source = "AUDIO + TRANSCRIPT";
+    ev.why = span
+      ? `The span “${span}” was flagged as less clear. Saying the same words in natural sense-groups (shown by the · marks) with light stress on key words improves intelligibility and reduces listener effort — accent itself is not the issue.`
+      : "Grouping the same words into natural sense-groups (shown by the · marks) and pausing at the marks improves rhythm, intelligibility and listener ease — the wording does not need to change.";
+    return ev;
+  }
+  return noSample();
+}
+
+/* Insert chunk markers at natural breakpoints (commas / linkers). */
+function mmChunk(sentence){
+  return sentence
+    .replace(/,\s*/g, " · ")
+    .replace(/\s+(and|but|so|because|when|if|which|that|who)\s+/gi, " · $1 ")
+    .replace(/\s{2,}/g," ").trim();
+}
+
+function mmWhyGrammar(types){
+  const bits = [];
+  if(types.includes("agreement")) bits.push("subject–verb agreement");
+  if(types.includes("tense")) bits.push("tense control");
+  if(types.includes("article")) bits.push("article use");
+  if(types.includes("preposition")) bits.push("preposition/collocation choice");
+  const list = bits.length ? bits.join(", ") : "sentence accuracy";
+  return `This improves ${list} while keeping the candidate's original meaning, which is exactly the kind of accuracy that supports a higher grammar band.`;
+}
+
+function mmNextTarget(critKey, band){
+  const b = typeof band==="number" ? band : 5.5;
+  const half = (Math.floor(b*2)/2 + 0.5).toFixed(1).replace(".0","");
+  const map = {
+    fluencyCoherence:`Toward Band ${half}: speak in longer, connected stretches and replace fillers with linking phrases (for instance, on the other hand, as a result). Record a two-minute answer and cut every "you know" / "I think".`,
+    lexical:`Toward Band ${half}: build three topic word-families per test theme and use at least one precise alternative to a common word (e.g. "significant" for "big") in each long answer.`,
+    grammar:`Toward Band ${half}: rehearse one complex pattern each day (relative clauses, second conditional, perfect tenses) and self-check agreement and articles when you replay your recording.`,
+    pronunciation:`Toward Band ${half}: read short passages in sense-groups, stressing the key content word in each group, and re-record until any unclear spans are easy to follow.`
+  };
+  return map[critKey] || `Aim for Band ${half} with focused, regular practice.`;
+}
+
+/* ============================================================
+   reportData MODEL
+   ============================================================ */
+function mmBuildReportData(session, sc, test){
+  const totalMs = ["part1","part2","part3"].reduce((a,k)=>a+(session.parts?.[k]?.speakingTimeMs||0),0);
+  const speakingTime = totalMs>0
+    ? `${Math.floor(totalMs/60000)}m ${String(Math.round((totalMs%60000)/1000)).padStart(2,"0")}s` : "—";
+  const ranked = MM_CRIT.map(c=>({...c, band:sc.criteria[c.key]})).filter(c=>typeof c.band==="number");
+  let strongest=null, focus=null;
+  if(ranked.length){
+    strongest = ranked.reduce((a,b)=>b.band>a.band?b:a);
+    focus = ranked.reduce((a,b)=>b.band<a.band?b:a);
+  }
+  const fmtB = (n)=> typeof n==="number" ? n.toFixed(1).replace(".0","") : "—";
+  const criteria = {};
+  for(const c of MM_CRIT){
+    const band = sc.criteria[c.key];
+    criteria[c.key] = {
+      key:c.key, label:c.label, short:c.short,
+      parentEN:c.parentEN, parentAR:c.parentAR,
+      band, bandText: fmtB(band),
+      explanation: sc.feedback?.detailedAnalysis?.[c.key] || "—",
+      evidence: mmCriterionEvidence(c.key, band, session, sc)
+    };
+  }
+  const confTier = sc.confidence?.tier || "medium";
+  const confLabel = {high:"High",medium:"Moderate",low:"Low"}[confTier] || "—";
+  return {
+    candidate: session.studentName || "—",
+    examiner: session.examinerName || "Mourad Mekki",
+    test: test?.title || session.test?.title || "—",
+    theme: test?.theme || session.test?.theme || "",
+    date: fmt.dateMed(session.completedAt),
+    speakingTime,
+    reportId: shortHash(session.id).toUpperCase(),
+    overallBand: sc.overall, overallBandText: fmtB(sc.overall),
+    cefr: sc.cefr, confidenceTier: confTier, confidenceLabel: confLabel,
+    confidenceEvidence: sc.confidence?.evidence || "",
+    strongest, focus,
+    criteria,
+    recommendations: sc.recommendations || {immediate:[],shortTerm:[],targetBand:[]},
+    performanceSummary: sc.feedback?.performanceSummary || [],
+    pronunciationDetail: sc.pronunciationDetail || null,
+    _session: session, _sc: sc, _test: test
+  };
+}
+
+/* A weekly plan tuned to the weakest criterion. */
+function mmWeeklyPlan(data, lang){
+  const focusKey = data.focus ? data.focus.key : "fluencyCoherence";
+  if(lang==="ar"){
+    const intro = "خطة تدريب بسيطة لهذا الأسبوع:";
+    const base = [
+      "التحدث لمدة دقيقتين يومياً عن موضوع مألوف.",
+      "تسجيل الإجابة والاستماع إليها مرة أخرى.",
+      "اختيار ثلاث جمل وتحسين المفردات أو القواعد فيها.",
+      "التدرب على التوقف في أماكن طبيعية أثناء الكلام.",
+      "إعادة الإجابة في نهاية الأسبوع ومقارنة التحسن."
+    ];
+    const focusLine = {
+      fluencyCoherence:"التركيز هذا الأسبوع: ربط الأفكار باستخدام كلمات الربط وتقليل التوقفات.",
+      lexical:"التركيز هذا الأسبوع: تعلّم كلمات جديدة مرتبطة بالموضوع واستخدامها في الكلام.",
+      grammar:"التركيز هذا الأسبوع: مراجعة زمن الأفعال وتراكيب الجمل البسيطة.",
+      pronunciation:"التركيز هذا الأسبوع: نطق الكلمات بوضوح والتوقف في الأماكن الطبيعية."
+    }[focusKey];
+    return { intro, items: base, focusLine };
+  }
+  const base = [
+    "Speak for two minutes a day about a familiar topic.",
+    "Record the answer and listen back to it once.",
+    "Pick three sentences and improve the vocabulary or grammar in them.",
+    "Practise pausing at natural points while speaking.",
+    "Re-record the same answer at the end of the week and compare the progress."
+  ];
+  const focusLine = {
+    fluencyCoherence:"Focus this week: connect ideas with linking words and reduce pauses.",
+    lexical:"Focus this week: learn topic words and use them in your answers.",
+    grammar:"Focus this week: review verb tenses and simple sentence patterns.",
+    pronunciation:"Focus this week: say words clearly and pause at natural points."
+  }[focusKey];
+  return { intro:"A simple practice plan for this week:", items:base, focusLine };
+}
+
+/* Seven-day action plan (compact, for Quick/Student). */
+function mmSevenDay(data){
+  const f = data.focus ? data.focus.short.toLowerCase() : "speaking";
+  return [
+    `Day 1–2 · Record a 2-minute answer on a familiar topic; note one ${f} habit to fix.`,
+    `Day 3–4 · Rewrite three of your own sentences (better word or correct grammar) and say them aloud.`,
+    `Day 5 · Practise a Part 2 long turn with linking phrases; pause at natural points.`,
+    `Day 6 · Re-record the Day 1 answer and compare; tick what improved.`,
+    `Day 7 · Do one full practice test and review the highlighted evidence sentence above.`
+  ];
+}
+
+/* Parent-friendly strengths / improvements (plain language). */
+function mmParentLists(data, lang){
+  const tr = MM_REPORT_TR[lang]||MM_REPORT_TR.en;
+  const s = data.strongest, f = data.focus;
+  const labelFor = (c)=> lang==="ar" ? c.parentAR : c.parentEN;
+  const strengths = [], improve = [];
+  if(lang==="ar"){
+    strengths.push(`يُظهر ابنك/ابنتك أداءً جيداً في: ${s?labelFor(s):"التواصل بشكل عام"}.`);
+    strengths.push("قادر/قادرة على فهم الأسئلة المختلفة والرد عليها.");
+    strengths.push("يستطيع/تستطيع التعبير عن الأفكار بشكل مفهوم.");
+    improve.push(`أهم خطوة تالية: تطوير ${f?labelFor(f):"تنظيم الإجابات"}.`);
+    improve.push("استخدام مفردات أكثر دقة وتنظيم الإجابات الطويلة بشكل أوضح.");
+    improve.push("التدرب على التحدث لفترات أطول دون توقف كثير.");
+  } else {
+    strengths.push(`Your child does well in ${s?labelFor(s).toLowerCase():"communicating overall"}.`);
+    strengths.push("They can understand different questions and respond to them.");
+    strengths.push("They can express their ideas so a listener understands.");
+    improve.push(`The clearest next step is ${f?labelFor(f).toLowerCase():"organising answers"}.`);
+    improve.push("Use more precise vocabulary and organise longer answers more smoothly.");
+    improve.push("Practise speaking for longer without many pauses.");
+  }
+  return { strengths, improve };
+}
+
+/* ============================================================
+   REPORT-TYPE REGISTRY
+   ============================================================ */
+const REPORT_TYPES = {
+  full:      { id:"full",      label:"Full Report",
+               audience:"Teacher + serious student", length:"≈ 10 pages",
+               desc:"The complete branded assessment with evidence for every criterion." },
+  student:   { id:"student",   label:"Student Summary",
+               audience:"Student", length:"2 pages",
+               desc:"Clear, supportive overview with a 7-day practice plan." },
+  diagnostic:{ id:"diagnostic",label:"Teacher Diagnostic Report",
+               audience:"Teacher / IELTS Coach", length:"Full technical",
+               desc:"Every signal, evidence table and teaching note. The most detailed view." },
+  parent:    { id:"parent",    label:"Parent-Friendly Report",
+               audience:"Parent", length:"2 pages", languages:["en","ar"],
+               desc:"Simple, warm and non-technical. Available in English or العربية." },
+  quick:     { id:"quick",     label:"Quick Summary",
+               audience:"Teacher / Student / Parent", length:"1 page",
+               desc:"A single A4 page: scores, strengths, one example and a 7-day plan." }
+};
+
+/* ---- small shared builders -------------------------------- */
+function rgBrandHead(eyebrow, sub, lang){
+  const tr = lang ? (MM_REPORT_TR[lang]||MM_REPORT_TR.en) : null;
+  return el("div",{class:"rg-head"},[
+    el("div",{class:"rg-head__crest"},"M"),
+    el("div",{class:"rg-head__brand"}, tr?tr.brand:"Mourad Mekki Teacher Toolkit"),
+    el("div",{class:"rg-head__eyebrow"}, eyebrow),
+    sub ? el("div",{class:"rg-head__sub"}, sub) : null,
+    el("div",{class:"rg-head__rule"})
+  ]);
+}
+function rgFooter(text){
+  return el("div",{class:"rg-foot"},[
+    el("div",{class:"rg-foot__rule"}),
+    el("div",{class:"rg-foot__text"}, text||"Mourad Mekki Teacher Toolkit · IELTS Coach")
+  ]);
+}
+function rgScoreStrip(items){
+  return el("div",{class:"rg-strip"}, items.map(([l,v])=>
+    el("div",{class:"rg-strip__cell"},[
+      el("div",{class:"rg-strip__v"}, v),
+      el("div",{class:"rg-strip__l"}, l)
+    ])));
+}
+function rgCritCards(data, labelMode){
+  return el("div",{class:"rg-crit"}, MM_CRIT.map(c=>{
+    const cr = data.criteria[c.key];
+    const name = labelMode==="parentEN" ? c.parentEN : labelMode==="parentAR" ? c.parentAR : c.label;
+    return el("div",{class:"rg-crit__card"},[
+      el("div",{class:"rg-crit__band"}, cr.bandText),
+      el("div",{class:"rg-crit__name"}, name)
+    ]);
+  }));
+}
+function rgList(title, items, cls){
+  return el("div",{class:"rg-block "+(cls||"")},[
+    el("div",{class:"rg-block__title"}, title),
+    el("ul",{class:"rg-ul"}, (items&&items.length?items:["—"]).map(t=>el("li",{}, t)))
+  ]);
+}
+function rgEvidence(label, quote, improvedLabel, improved, whyLabel, why, opts){
+  opts = opts||{};
+  const ev = [];
+  ev.push(el("div",{class:"rg-ev__label"}, label));
+  ev.push(el("div",{class:"rg-ev__quote"+(opts.ltr?" english-evidence":"")}, quote ? "“"+quote+"”" : "—"));
+  if(improved){
+    ev.push(el("div",{class:"rg-ev__label"}, improvedLabel));
+    ev.push(el("div",{class:"rg-ev__improved"+(opts.ltr?" english-evidence":"")}, "“"+improved+"”"));
+  }
+  if(why){
+    ev.push(el("div",{class:"rg-ev__label"}, whyLabel));
+    ev.push(el("div",{class:"rg-ev__why"}, why));
+  }
+  return el("div",{class:"rg-ev"}, ev);
+}
+
+/* ---- FULL: reuse the live on-screen report (already enhanced) */
+function rgRenderFull(data){
+  // The live, premium .mm-report is what we capture for the Full export.
+  const live = document.querySelector(".mm-report");
+  return live ? live.cloneNode(true) : el("div",{class:"mm-report"}, "Report unavailable.");
+}
+
+/* ---- STUDENT SUMMARY (2 pages) ---------------------------- */
+function rgRenderStudent(data){
+  const s = data.strongest, f = data.focus;
+  const exCrit = f ? data.criteria[f.key] : data.criteria.fluencyCoherence;
+  const ev = exCrit.evidence;
+  const recImm = (data.recommendations.immediate||[]).slice(0,3).map(r=>r.title+" — "+r.body);
+  const recTar = (data.recommendations.shortTerm||[]).slice(0,3).map(r=>r.title+" — "+r.body);
+  const page1 = el("div",{class:"rg-page"},[
+    rgBrandHead("IELTS Speaking · Student Summary"),
+    el("div",{class:"rg-meta"},[
+      ["Candidate",data.candidate],["Test",data.test],["Date",data.date],
+      ["Speaking time",data.speakingTime]
+    ].map(([l,v])=>el("div",{class:"rg-meta__item"},[
+      el("div",{class:"rg-meta__l"},l), el("div",{class:"rg-meta__v"},v)]))),
+    rgScoreStrip([
+      ["Overall Band",data.overallBandText],["CEFR",data.cefr.level||"—"],
+      ["Confidence",data.confidenceLabel],["Focus",f?f.short:"—"]
+    ]),
+    rgCritCards(data,"full"),
+    el("div",{class:"rg-prose"},[
+      el("div",{class:"rg-block__title"},"Examiner summary"),
+      el("p",{}, data.performanceSummary[0]||"A solid speaking performance with clear next steps."),
+      el("p",{}, s&&f?`Your strongest area is ${s.label.toLowerCase()}; the clearest route to the next half-band is ${f.label.toLowerCase()}.`:"")
+    ]),
+    el("div",{class:"rg-caution"}, "This is a classroom coaching estimate, not an official IELTS score."),
+    rgFooter("Mourad Mekki Teacher Toolkit · IELTS Coach")
+  ]);
+  const page2 = el("div",{class:"rg-page"},[
+    rgBrandHead("IELTS Speaking · Student Summary","Your strengths and next steps"),
+    el("div",{class:"rg-cols2"},[
+      rgList("Strengths", [
+        s?`${s.label}: your most secure skill right now.`:"Clear communication of your main ideas.",
+        "You respond to a range of question types.",
+        "You keep your answers on topic."
+      ], "rg-block--good"),
+      rgList("Areas to improve", [
+        f?`${f.label}: your biggest opportunity for gains.`:"Organising longer answers.",
+        "Add more precise, topic-specific vocabulary.",
+        "Reduce hesitation in longer turns."
+      ], "rg-block--focus")
+    ]),
+    rgEvidence("Example from your answer", ev.quote, "A better version", ev.improved,
+               "Why it matters", ev.why||ev.note),
+    el("div",{class:"rg-block"},[
+      el("div",{class:"rg-block__title"},"7-day practice plan"),
+      el("ol",{class:"rg-ol"}, mmSevenDay(data).map(t=>el("li",{}, t)))
+    ]),
+    el("div",{class:"rg-target"}, f
+      ? `Next test target: lift ${f.label.toLowerCase()} by half a band — ${ev.nextTarget}`
+      : "Next test target: keep your strengths and tighten your longer answers."),
+    rgFooter("Mourad Mekki Teacher Toolkit · IELTS Coach")
+  ]);
+  return el("div",{class:"mm-report mm-report--gen mm-report--student"},[page1, page2]);
+}
+
+/* ---- TEACHER DIAGNOSTIC (full technical) ------------------ */
+function rgRenderDiagnostic(data){
+  const sc = data._sc, session = data._session;
+  const head = rgBrandHead("IELTS Speaking · Teacher Diagnostic Report",
+    `Candidate: ${data.candidate} · ${data.test} · ${data.date}`);
+  const scoreStrip = rgScoreStrip([
+    ["Overall",data.overallBandText],["CEFR",data.cefr.level||"—"],
+    ["Confidence",data.confidenceLabel],
+    ["Strongest",data.strongest?data.strongest.short:"—"],
+    ["Focus",data.focus?data.focus.short:"—"]
+  ]);
+  // Per-criterion diagnostic blocks with evidence
+  const critBlocks = MM_CRIT.map(c=>{
+    const cr = data.criteria[c.key]; const ev = cr.evidence;
+    return el("div",{class:"rg-diagblock"},[
+      el("div",{class:"rg-diagblock__head"},[
+        el("span",{class:"rg-diagblock__name"}, c.label),
+        el("span",{class:"rg-diagblock__band"}, cr.band==null?"provisional":"Band "+cr.bandText)
+      ]),
+      el("p",{class:"rg-diagblock__exp"}, cr.explanation),
+      rgEvidence("Evidence from transcript", ev.quote,
+        c.key==="pronunciation"?"Clearer delivery target":"Improved version", ev.improved,
+        "Why this matters", ev.why||ev.note),
+      el("div",{class:"rg-diagblock__src"}, ev.source?("Evidence source · "+ev.source):""),
+      el("div",{class:"rg-diagblock__target"}, "Next band target · "+ev.nextTarget)
+    ]);
+  });
+  // Pronunciation signal table (reuse engine detail)
+  let pronTable=null, pronSpans=null;
+  const pd = sc.pronunciationDetail;
+  if(pd && pd.subscores){
+    const sub = pd.subscores;
+    const rows = [
+      ["Intelligibility",sub.intelligibility],["Listener effort",sub.listenerEffort],
+      ["Speech clarity",sub.speechClarity],["Rhythm",sub.rhythm],
+      ["Pausing / chunking",sub.pausingChunking],["Intonation (approx.)",sub.intonationApproximation],
+      ["Audio quality",sub.audioQuality]
+    ];
+    pronTable = el("div",{class:"rg-ptable"},[
+      el("div",{class:"rg-ptable__row rg-ptable__row--head"},[el("div",{},"Signal"),el("div",{},"Score")]),
+      ...rows.map(([l,v])=>el("div",{class:"rg-ptable__row"},[
+        el("div",{}, l), el("div",{}, typeof v==="number"?v+"/100":"—")]))
+    ]);
+    const spans=[];
+    (pd.possibleUnclearSpans||[]).concat(pd.unclearWords||[]).slice(0,10).forEach(s=>{
+      const t=typeof s==="string"?s:(s.text||s.span||s.word); if(t) spans.push(t);
+    });
+    if(spans.length) pronSpans = el("div",{class:"rg-block"},[
+      el("div",{class:"rg-block__title"},"Detected unclear spans"),
+      el("div",{class:"rg-chips"}, spans.map(t=>el("span",{class:"rg-chip"}, "“"+t+"”")))
+    ]);
+  }
+  // Repetition / vocabulary / grammar signals
+  const allErrs = ["part1","part2","part3"].flatMap(k=>sc.analyzed?.[k]?.metrics.errors||[]);
+  const advItems = [...new Set(["part1","part2","part3"].flatMap(k=>sc.analyzed?.[k]?.metrics.advancedItems||[]))].slice(0,10);
+  const signalGrid = el("div",{class:"rg-cols2"},[
+    rgList("Grammar error examples", allErrs.length?allErrs.slice(0,6).map(e=>`${e.type}: “${e.text}”`):["No systematic errors detected."]),
+    rgList("Advanced vocabulary used", advItems.length?advItems.map(w=>"“"+w+"”"):["Limited advanced items detected."])
+  ]);
+  // Teaching notes
+  const fk = data.focus ? data.focus.key : "fluencyCoherence";
+  const teaching = {
+    fluencyCoherence:{ first:"Extended-turn organisation and reducing hesitation.",
+      activity:"Timed 2-minute long-turn drills with a linking-phrase bank on the board.",
+      homework:"Record a Part 2 answer nightly; transcribe and mark every filler.",
+      retest:"Re-test Part 2 + Part 3 with focus on cohesion across the answer." },
+    lexical:{ first:"Topic-specific vocabulary and precise paraphrase.",
+      activity:"Word-family mapping for the test theme; collocation matching game.",
+      homework:"Build three word-families per theme and use each in a spoken answer.",
+      retest:"Re-test with new topics to check transfer of vocabulary." },
+    grammar:{ first:"Accuracy of the dominant error type under extended discourse.",
+      activity:"Guided error-correction of the candidate's own transcript sentences.",
+      homework:"Daily complex-structure drill (relative clauses / conditionals).",
+      retest:"Re-test Part 3 where complex grammar is most demanded." },
+    pronunciation:{ first:"Chunking, stress placement and clarity of flagged spans.",
+      activity:"Sense-group reading aloud; mark stress on content words.",
+      homework:"Shadow a short clip and re-record until unclear spans are clear.",
+      retest:"Re-record the flagged spans and compare intelligibility." }
+  }[fk];
+  const teachingBlock = el("div",{class:"rg-teaching"},[
+    el("div",{class:"rg-block__title"},"Teaching notes"),
+    el("div",{class:"rg-teaching__grid"},[
+      el("div",{},[el("strong",{},"Focus first · "), teaching.first]),
+      el("div",{},[el("strong",{},"Classroom activity · "), teaching.activity]),
+      el("div",{},[el("strong",{},"Homework · "), teaching.homework]),
+      el("div",{},[el("strong",{},"Retest focus · "), teaching.retest])
+    ])
+  ]);
+  // Provenance + browser limitation
+  const provenance = el("div",{class:"rg-prov"},[
+    el("strong",{},"Provenance · "),
+    `Engine v${sc.engineVersion}. Fluency, lexical resource and grammar are mapped to IELTS public band descriptors from the transcript; pronunciation is an acoustic + transcript estimate. `,
+    `Pronunciation is estimated using browser-based audio and transcript signals — intelligibility, listener effort, rhythm, pausing, chunking and speech clarity. It is a reliable classroom estimate, not a certified examiner score. The browser cannot perform true phoneme-level forced alignment unless a dedicated speech model is connected; bands above 7.0 are treated cautiously. Accent is not penalised unless it affects intelligibility. `,
+    `Confidence: ${(sc.confidence?.tier||"").toUpperCase()} — ${sc.confidence?.evidence||""}`
+  ]);
+  return el("div",{class:"mm-report mm-report--gen mm-report--diagnostic"},[
+    head, scoreStrip,
+    el("div",{class:"rg-sech"},"Criterion analysis with transcript evidence"),
+    ...critBlocks,
+    el("div",{class:"rg-sech"},"Pronunciation signal table"),
+    pronTable||el("p",{class:"rg-muted"},"No pronunciation engine detail for this session."),
+    pronSpans,
+    el("div",{class:"rg-sech"},"Lexical, grammar & repetition signals"),
+    signalGrid,
+    el("div",{class:"rg-sech"},"Teaching plan"),
+    teachingBlock,
+    el("div",{class:"rg-sech"},"Assessment notes"),
+    provenance,
+    rgFooter("Mourad Mekki Teacher Toolkit · IELTS Coach")
+  ]);
+}
+
+/* ---- PARENT-FRIENDLY (EN + AR) ---------------------------- */
+function rgRenderParent(data, lang){
+  lang = lang==="ar" ? "ar" : "en";
+  const tr = MM_REPORT_TR[lang];
+  const isAR = lang==="ar";
+  const labelMode = isAR ? "parentAR" : "parentEN";
+  const f = data.focus;
+  const exCrit = f ? data.criteria[f.key] : data.criteria.fluencyCoherence;
+  const ev = exCrit.evidence;
+  const lists = mmParentLists(data, lang);
+  const plan = mmWeeklyPlan(data, lang);
+
+  const meta = el("div",{class:"rg-meta"},[
+    [tr.candidate,data.candidate],[tr.topic,data.test],[tr.date,data.date],
+    [tr.speakingTime,data.speakingTime],[tr.overallLevel,data.cefr.level+" · "+(data.cefr.label||"")],
+    [tr.confidence,data.confidenceLabel]
+  ].map(([l,v])=>el("div",{class:"rg-meta__item"},[
+    el("div",{class:"rg-meta__l"},l), el("div",{class:"rg-meta__v"},v)])));
+
+  const summaryText = isAR
+    ? `يستطيع ابنك/ابنتك التعبير عن الأفكار بوضوح والرد على الأسئلة المختلفة. الخطوة التالية هي استخدام مفردات أكثر دقة وتنظيم الإجابات الطويلة بشكل أكثر سلاسة.`
+    : `Your child can communicate ideas clearly and respond to different questions. The next step is to use more precise vocabulary and organise longer answers more smoothly.`;
+
+  const finalNote = isAR
+    ? "نشكر تعاونكم. مع تدريب بسيط ومنتظم سيتحسن أداء ابنكم/ابنتكم بشكل ملحوظ. نحن فخورون بالتقدم الذي تحقق."
+    : "Thank you for your support. With a little regular practice, your child's speaking will keep improving. We're proud of the progress so far.";
+
+  const page1 = el("div",{class:"rg-page"+(isAR?" report-ar":"")},[
+    rgBrandHead(tr.parentTitle, tr.ielts, lang),
+    meta,
+    el("div",{class:"rg-block"},[
+      el("div",{class:"rg-block__title"}, tr.summaryHead),
+      el("p",{class:"rg-prose__p"}, summaryText)
+    ]),
+    el("div",{class:"rg-block__title"}, tr.skillsHead),
+    rgCritCards(data, labelMode),
+    el("div",{class:"rg-caution"},[
+      el("strong",{}, tr.cautionHead+" · "), tr.caution
+    ]),
+    rgFooter(tr.footer)
+  ]);
+
+  const page2 = el("div",{class:"rg-page"+(isAR?" report-ar":"")},[
+    rgBrandHead(tr.parentTitle, tr.ielts, lang),
+    el("div",{class:"rg-cols2"},[
+      rgList(tr.strengths, lists.strengths, "rg-block--good"),
+      rgList(tr.improve, lists.improve, "rg-block--focus")
+    ]),
+    rgEvidence(tr.example, ev.quote, tr.improved, ev.improved, tr.explainNote,
+      (isAR
+        ? "هذه الصياغة أفضل لأنها أكثر طبيعية ودقة، وتساعد الطالب/الطالبة على التعبير بطريقة أوضح."
+        : (ev.why||ev.note)),
+      {ltr:true}),
+    el("div",{class:"rg-block"},[
+      el("div",{class:"rg-block__title"}, tr.weekly),
+      plan.focusLine ? el("p",{class:"rg-prose__p"}, plan.focusLine) : null,
+      el("ol",{class:"rg-ol"}, plan.items.map(t=>el("li",{}, t)))
+    ]),
+    el("div",{class:"rg-final"},[
+      el("div",{class:"rg-block__title"}, tr.finalNote),
+      el("p",{class:"rg-prose__p"}, finalNote)
+    ]),
+    rgFooter(tr.footer)
+  ]);
+
+  const rootAttrs = {class:"mm-report mm-report--gen mm-report--parent"+(isAR?" report-ar":"")};
+  if(isAR){ rootAttrs.dir="rtl"; rootAttrs.lang="ar"; }
+  const root = el("div", rootAttrs, [page1, page2]);
+  return root;
+}
+
+/* ---- QUICK SUMMARY (1 page) ------------------------------- */
+function rgRenderQuick(data){
+  const s = data.strongest, f = data.focus;
+  const exCrit = f ? data.criteria[f.key] : data.criteria.fluencyCoherence;
+  const ev = exCrit.evidence;
+  const strengths = [
+    s?`Strongest: ${s.label}.`:"Clear communication of main ideas.",
+    "Responds to a range of question types.",
+    "Stays on topic across the test."
+  ];
+  const priorities = [
+    f?`Priority: ${f.label}.`:"Organise longer answers.",
+    "Use more precise vocabulary.",
+    "Reduce hesitation in longer turns."
+  ];
+  return el("div",{class:"mm-report mm-report--gen mm-report--quick"},[
+    el("div",{class:"rg-page rg-page--tight"},[
+      el("div",{class:"rg-qbanner"},[
+        el("div",{class:"rg-qbanner__crest"},"M"),
+        el("div",{},[
+          el("div",{class:"rg-qbanner__brand"},"Mourad Mekki Teacher Toolkit"),
+          el("div",{class:"rg-qbanner__sub"},"IELTS Speaking · Quick Summary")
+        ])
+      ]),
+      el("div",{class:"rg-qmeta"},[
+        el("span",{},[el("strong",{},"Candidate: "),data.candidate]),
+        el("span",{},[el("strong",{},"Test: "),data.test]),
+        el("span",{},[el("strong",{},"Date: "),data.date]),
+        el("span",{},[el("strong",{},"Speaking: "),data.speakingTime])
+      ]),
+      rgScoreStrip([
+        ["Overall Band",data.overallBandText],["CEFR",data.cefr.level||"—"],
+        ["Confidence",data.confidenceLabel],["Focus Priority",f?f.short:"—"]
+      ]),
+      rgCritCards(data,"full"),
+      el("div",{class:"rg-cols2 rg-cols2--tight"},[
+        rgList("Key strengths", strengths.slice(0,3), "rg-block--good"),
+        rgList("Improvement priorities", priorities.slice(0,3), "rg-block--focus")
+      ]),
+      el("div",{class:"rg-qstrong"},[
+        el("span",{},[el("strong",{},"Strongest area: "), s?s.short:"—"]),
+        el("span",{},[el("strong",{},"Main focus: "), f?f.short:"—"])
+      ]),
+      rgEvidence("Evidence — original", ev.quote, "Improved", ev.improved, null, null),
+      el("div",{class:"rg-block rg-block--tight"},[
+        el("div",{class:"rg-block__title"},"7-day action plan"),
+        el("ol",{class:"rg-ol rg-ol--tight"}, mmSevenDay(data).map(t=>el("li",{}, t)))
+      ]),
+      rgFooter("Mourad Mekki Teacher Toolkit · IELTS Coach")
+    ])
+  ]);
+}
+
+/* ---- dispatcher ------------------------------------------- */
+function rgRender(type, data, lang){
+  switch(type){
+    case "student":    return rgRenderStudent(data);
+    case "diagnostic": return rgRenderDiagnostic(data);
+    case "parent":     return rgRenderParent(data, lang);
+    case "quick":      return rgRenderQuick(data);
+    case "full":
+    default:           return rgRenderFull(data);
+  }
+}
+
+/* ============================================================
+   PREVIEW OVERLAY + EXPORT
+   ============================================================ */
+let RG_SELECTED = "full";
+let RG_PARENT_LANG = "en";
+
+function rgFilename(session, type, lang){
+  const name = (session.studentName||"candidate").replace(/\s+/g,"-").toLowerCase();
+  const suffix = type==="parent" ? `parent-${lang}` : type;
+  return `ielts-speaking-${suffix}-${name}-${session.id.slice(-6)}.pdf`;
+}
+
+function rgExport(session, sc, test, type, lang, btn){
+  // Full report → capture the live premium report directly (unchanged path).
+  if(type==="full"){
+    const live = document.querySelector(".mm-report");
+    downloadPDF(session, btn, { targetEl: live, filename: rgFilename(session,"full",lang) });
+    return;
+  }
+  const data = mmBuildReportData(session, sc, test);
+  const node = rgRender(type, data, lang);
+  rgWithStage(node, async (stageEl)=>{
+    await downloadPDF(session, btn, {
+      targetEl: stageEl,
+      filename: rgFilename(session, type, lang),
+      footerBrand:"Mourad Mekki Teacher Toolkit · IELTS Coach",
+      rtl: (type==="parent" && lang==="ar"),
+      suppressSubline: (type==="parent" && lang==="ar")
+    });
+  });
+}
+
+/* Render a generated report into an off-screen stage so html2canvas
+   can measure & rasterise it at true A4 width, then clean up. */
+function rgWithStage(node, fn){
+  const stage = el("div",{class:"rg-stage"},[node]);
+  document.body.appendChild(stage);
+  // Force layout
+  void stage.offsetHeight;
+  const done = ()=>{ try{ stage.remove(); }catch(e){} };
+  Promise.resolve(fn(node)).then(done).catch(err=>{ console.warn(err); done(); });
+}
+
+function rgOpenPreview(session, sc, test, type, lang){
+  const data = mmBuildReportData(session, sc, test);
+  const node = type==="full"
+    ? (function(){ const l=document.querySelector(".mm-report"); return l?l.cloneNode(true):rgRender("full",data); })()
+    : rgRender(type, data, lang);
+  const overlay = el("div",{class:"rg-overlay"});
+  const close = ()=>{ document.body.classList.remove("rg-preview-open"); overlay.remove(); };
+  const bar = el("div",{class:"rg-overlay__bar","data-print":"hide"},[
+    el("div",{class:"rg-overlay__title"},
+      REPORT_TYPES[type].label + (type==="parent"?` · ${lang==="ar"?"العربية":"English"}`:"") ),
+    el("div",{class:"rg-overlay__actions"},[
+      el("button",{class:"mm-btn mm-btn--primary mm-btn--mini",onclick:(e)=>rgExport(session,sc,test,type,lang,e.currentTarget)},
+        [el("span",{html:ICONS.download}),"Download PDF"]),
+      el("button",{class:"mm-btn mm-btn--secondary mm-btn--mini",onclick:()=>{ document.body.classList.add("rg-printing"); window.print(); setTimeout(()=>document.body.classList.remove("rg-printing"),800); }},
+        [el("span",{html:ICONS.print}),"Print"]),
+      el("button",{class:"mm-btn mm-btn--ghost mm-btn--mini",onclick:close},"Close")
+    ])
+  ]);
+  const scroll = el("div",{class:"rg-overlay__scroll"},[ el("div",{class:"rg-overlay__paper"},[node]) ]);
+  overlay.appendChild(bar); overlay.appendChild(scroll);
+  overlay.addEventListener("click",(e)=>{ if(e.target===overlay) close(); });
+  document.body.appendChild(overlay);
+  document.body.classList.add("rg-preview-open");
+}
+
+/* ---- the elegant "Choose Report Type" panel (modal) ------- */
+function rgOpenExportPanel(session, sc, test){
+  const order = ["full","student","diagnostic","parent","quick"];
+  const langWrap = el("div",{class:"rg-langrow",style:RG_SELECTED==="parent"?"":"display:none;"},[
+    el("div",{class:"rg-langrow__label"},"Report Language"),
+    el("div",{class:"rg-langseg"},[
+      el("button",{class:"rg-langseg__btn"+(RG_PARENT_LANG==="en"?" is-active":""),"data-lang":"en"},"English"),
+      el("button",{class:"rg-langseg__btn"+(RG_PARENT_LANG==="ar"?" is-active":""),"data-lang":"ar"},"العربية")
+    ])
+  ]);
+  const cards = order.map(id=>{
+    const rt = REPORT_TYPES[id];
+    const card = el("button",{class:"rg-card"+(RG_SELECTED===id?" is-active":""),"data-id":id},[
+      el("div",{class:"rg-card__check",html:ICONS.check}),
+      el("div",{class:"rg-card__name"}, rt.label),
+      el("div",{class:"rg-card__row"},[
+        el("span",{class:"rg-card__aud"}, rt.audience),
+        el("span",{class:"rg-card__len"}, rt.length)
+      ]),
+      el("div",{class:"rg-card__desc"}, rt.desc),
+      id==="parent" ? el("div",{class:"rg-card__lang"},"Language: English / العربية") : null
+    ]);
+    card.addEventListener("click",()=>{
+      RG_SELECTED=id;
+      grid.querySelectorAll(".rg-card").forEach(c=>c.classList.toggle("is-active", c.getAttribute("data-id")===id));
+      langWrap.style.display = id==="parent" ? "" : "none";
+    });
+    return card;
+  });
+  const grid = el("div",{class:"rg-grid"}, cards);
+  langWrap.querySelectorAll(".rg-langseg__btn").forEach(b=>{
+    b.addEventListener("click",()=>{
+      RG_PARENT_LANG=b.getAttribute("data-lang");
+      langWrap.querySelectorAll(".rg-langseg__btn").forEach(x=>x.classList.toggle("is-active",x===b));
+    });
+  });
+  const body = el("div",{class:"rg-panel"},[
+    el("p",{class:"rg-panel__intro"},"Choose how this assessment should be presented. Each version draws on the same scoring and transcript evidence."),
+    grid, langWrap
+  ]);
+  const backdrop = el("div",{class:"mm-modal-backdrop"});
+  const close = ()=>backdrop.remove();
+  const sheet = el("div",{class:"mm-modal rg-modal"},[
+    el("h3",{class:"mm-modal__title"},"Choose Report Type"),
+    body,
+    el("div",{class:"mm-modal__actions"},[
+      el("button",{class:"mm-btn mm-btn--ghost",onclick:close},"Cancel"),
+      el("button",{class:"mm-btn mm-btn--secondary",onclick:()=>{ close(); rgOpenPreview(session,sc,test,RG_SELECTED,RG_PARENT_LANG); }},
+        [el("span",{html:ICONS.search}),"Preview Report"]),
+      el("button",{class:"mm-btn mm-btn--primary",onclick:(e)=>{ const t=RG_SELECTED,l=RG_PARENT_LANG; close(); rgExport(session,sc,test,t,l,e.currentTarget); }},
+        [el("span",{html:ICONS.download}),"Generate PDF"])
+    ])
+  ]);
+  backdrop.appendChild(sheet);
+  backdrop.addEventListener("click",(e)=>{ if(e.target===backdrop) close(); });
+  document.body.appendChild(backdrop);
+}
+
+
 /* ------------------------------------------------------------
    PDF EXPORT — premium, page-safe, branded
    ------------------------------------------------------------
@@ -9582,8 +10863,9 @@ function downloadJSON(session){
    If html2canvas / jsPDF are unavailable, we fall back to the
    native print pipeline (which has its own fixed footer + watermark).
    ------------------------------------------------------------ */
-async function downloadPDF(session, btn){
-  const reportEl = document.querySelector(".mm-report");
+async function downloadPDF(session, btn, opts){
+  opts = opts || {};
+  const reportEl = opts.targetEl || document.querySelector(".mm-report");
   if(!reportEl){ toast("Report not ready"); return; }
   const jspdfNS = window.jspdf || window.jsPDF;
   if(typeof window.html2canvas !== "function" || !jspdfNS){
@@ -9626,7 +10908,12 @@ async function downloadPDF(session, btn){
       ".mm-pron-subhead",".mm-pron-table__head",".mm-pron-table__row",
       ".mm-pron-spans",".mm-pron-advice__col",".mm-pron-diag__block",
       ".mm-transcript-controls",".mm-transcript-part__label",".mm-turn",
-      ".mm-recs__col",".mm-stamp",".mm-signature",".mm-provenance"
+      ".mm-recs__col",".mm-stamp",".mm-signature",".mm-provenance",
+      ".mm-evidence",
+      /* generated report blocks (student / diagnostic / parent / quick) */
+      ".rg-page",".rg-head",".rg-meta",".rg-strip",".rg-crit__card",
+      ".rg-block",".rg-ev",".rg-diagblock",".rg-ptable__row",".rg-teaching",
+      ".rg-prov",".rg-caution",".rg-final",".rg-target",".rg-qbanner",".rg-foot"
     ].join(",");
     const regions = [];
     reportEl.querySelectorAll(sel).forEach(node=>{
@@ -9699,12 +10986,14 @@ async function downloadPDF(session, btn){
         pageW, pageH, marginX:MARGIN_X,
         pageNo:i+1, totalPages,
         candidate: session.studentName || "Candidate",
-        test: (Library.get(session.testId)||session.test||{}).title || "IELTS Speaking"
+        test: (Library.get(session.testId)||session.test||{}).title || "IELTS Speaking",
+        footerBrand: opts.footerBrand,
+        suppressSubline: !!opts.suppressSubline
       });
     }
 
     const name = (session.studentName||"candidate").replace(/\s+/g,"-").toLowerCase();
-    pdf.save(`ielts-speaking-${name}-${session.id.slice(-6)}.pdf`);
+    pdf.save(opts.filename || `ielts-speaking-${name}-${session.id.slice(-6)}.pdf`);
     toast("PDF saved");
   }catch(err){
     console.warn("PDF generation failed", err);
@@ -9718,6 +11007,7 @@ async function downloadPDF(session, btn){
 /* Draw the per-page watermark + gold rule + branded footer + page number. */
 function stampPdfFurniture(pdf, o){
   const { pageW, pageH, marginX, pageNo, totalPages, candidate, test } = o;
+  const footerBrand = o.footerBrand || "Mourad Mekki Teacher Toolkit · IELTS Speaking Assessment";
   // --- Watermark (very light, behind nothing important) ---
   try{
     if(pdf.GState){ pdf.saveGraphicsState(); pdf.setGState(new pdf.GState({opacity:0.05})); }
@@ -9738,24 +11028,29 @@ function stampPdfFurniture(pdf, o){
   pdf.setFont("helvetica","bold");
   pdf.setFontSize(8);
   pdf.setTextColor(22,41,69);        // navy-800
-  pdf.text("Mourad Mekki Teacher Toolkit · IELTS Speaking Assessment", marginX, footY);
+  pdf.text(footerBrand, marginX, footY);
 
   pdf.setFont("helvetica","normal");
   pdf.setTextColor(107,115,132);     // ink-500
   const right = `Page ${pageNo} of ${totalPages}`;
   pdf.text(right, pageW - marginX, footY, {align:"right"});
 
-  // Candidate / test line beneath (kept short to avoid collisions)
-  const sub = `Candidate: ${candidate} · Test: ${test}`;
-  const maxW = pageW - 2*marginX - 28;
-  let subTrim = sub;
-  // crude width guard so it never runs into the page number
-  if(pdf.getTextWidth(subTrim) > maxW){
-    while(subTrim.length>8 && pdf.getTextWidth(subTrim+"…") > maxW){ subTrim = subTrim.slice(0,-1); }
-    subTrim += "…";
+  // Candidate / test line beneath (kept short to avoid collisions).
+  // Skipped for RTL/Arabic exports (the core PDF font cannot render Arabic
+  // glyphs; the candidate name already appears in the rasterised content).
+  const hasNonLatin = /[^\u0000-\u024F\u2000-\u206F]/.test(`${candidate} ${test}`);
+  if(!o.suppressSubline && !hasNonLatin){
+    const sub = `Candidate: ${candidate} · Test: ${test}`;
+    const maxW = pageW - 2*marginX - 28;
+    let subTrim = sub;
+    // crude width guard so it never runs into the page number
+    if(pdf.getTextWidth(subTrim) > maxW){
+      while(subTrim.length>8 && pdf.getTextWidth(subTrim+"…") > maxW){ subTrim = subTrim.slice(0,-1); }
+      subTrim += "…";
+    }
+    pdf.setFontSize(7.5);
+    pdf.text(subTrim, marginX, footY + 3.4);
   }
-  pdf.setFontSize(7.5);
-  pdf.text(subTrim, marginX, footY + 3.4);
 }
 
 /* ------------------------------------------------------------
