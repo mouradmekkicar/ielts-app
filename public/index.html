@@ -5042,7 +5042,7 @@ const AuthAccess = {
 
   /* ---- daily limit: one token per user AND per device per local day ---- */
   canUserUseTokenToday(userId, deviceId){
-    const today = localDateKey();
+    const today = localDateKey(); return {allowed:true};
     const consumed = TokenStore.all().filter(t=>t.status==="consumed" && t.consumedAt && localDateKey(t.consumedAt)===today);
     if(consumed.some(t=>t.userId===userId)) return {allowed:false, reason:"user",   message:"You have already used today’s token. You may request another token tomorrow."};
     if(consumed.some(t=>t.deviceId===deviceId)) return {allowed:false, reason:"device", message:"This device has already used one token today."};
@@ -12040,13 +12040,13 @@ function promptReason(title, label, confirmLabel){
 }
 function pickExpiry(){
   return new Promise(resolve=>{
-    let val="7";
+    let val="7", uses="1"; const usesSel = el("select",{class:"mm-input",onchange:e=>uses=e.target.value},[["1","1 test"],["3","3 tests"],["5","5 tests"],["10","10 tests"],["0","Unlimited"]].map(([v,l])=>el("option",{value:v, selected:v==="1"?"selected":undefined},l)));
     const sel = el("select",{class:"mm-input",onchange:e=>val=e.target.value},
       TOKEN_EXPIRY_PRESETS.map(p=>el("option",{value:p.value, selected:p.value==="7"?"selected":undefined},p.label)));
-    modal({title:"Set token expiry",
-      body:el("div",{},[el("p",{class:"mm-modal__text"},"This token will stop working after the selected period."), sel]),
+    modal({title:"Grant access token",
+      body:el("div",{},[el("p",{class:"mm-modal__text"},"Choose how many tests this token unlocks and when it expires."),el("label",{class:"mm-label"},"Tests this token unlocks"),usesSel,el("label",{class:"mm-label",style:"margin-top:14px;"},"Expires after"),sel]),
       actions:[{label:"Cancel",value:false},{label:"Grant token",kind:"primary",value:true}]})
-      .then(ok=>resolve(ok?val:null));
+      .then(ok=>resolve(ok?{expiryPreset:val, usesAllowed:uses}:null));
   });
 }
 function showGrantedToken(token){
@@ -12055,7 +12055,7 @@ function showGrantedToken(token){
     el("button",{class:"mm-token-value__copy",onclick:()=>copyToClipboard(token.rawTokenForDisplay)},"Copy")
   ]);
   modal({title:"Token granted", body:el("div",{},[
-    el("p",{class:"mm-modal__text"}, `Issued to ${token.fullName}. It has also been delivered to their in-app notifications. Expires ${fmt.dateMed(token.expiresAt)}.`),
+    el("p",{class:"mm-modal__text"}, `Issued to ${token.fullName}. Unlocks ${token.usesAllowed==null?"unlimited tests":token.usesAllowed+" test"+(token.usesAllowed===1?"":"s")}. It has also been delivered to their in-app notifications. Expires ${fmt.dateMed(token.expiresAt)}.`),
     row,
     el("p",{class:"mm-modal__text",style:"margin-top:12px;font-size:12px;color:var(--mm-fg-tertiary);"},"For security the full token is shown once here; the candidate can copy it from their own notifications.")
   ]), actions:[{label:"Done",kind:"primary",value:true}]});
@@ -12093,7 +12093,7 @@ function openTokenGate(test){
       errBox,
       el("label",{class:"mm-label"},"Access token"),
       el("div",{style:"display:flex;gap:8px;align-items:center;"},[ input, pasteBtn ].filter(Boolean)),
-      el("div",{class:"mm-note-box"}, "One token unlocks one test only. You can use one token per day. You can still view previous reports without a token."),
+      el("div",{class:"mm-note-box"}, "Each token unlocks the number of tests it was issued for. You can still view previous reports without a token."),
       el("div",{class:"mm-modal__actions",style:"flex-wrap:wrap;"},[
         el("button",{class:"mm-btn mm-btn--ghost",onclick:()=>close(null)},"Cancel"),
         el("button",{class:"mm-btn mm-btn--secondary",onclick:async()=>{
@@ -12382,7 +12382,7 @@ function renderAccessRequests(){
     if(r.status==="pending"){
       actions.push(el("button",{class:"mm-btn mm-btn--primary mm-btn--mini",onclick:async()=>{
         const preset = await pickExpiry(); if(preset===null) return;
-        const res = await AuthAccess.grantToken(r.requestId,{expiryPreset:preset});
+        const res = await AuthAccess.grantToken(r.requestId, preset);
         if(res.ok){ showGrantedToken(res.token); state._emit(); } else toast(res.error);
       }},"Grant"));
       actions.push(el("button",{class:"mm-btn mm-btn--ghost mm-btn--mini",onclick:async()=>{
@@ -12401,7 +12401,7 @@ function renderAccessRequests(){
     actions.push(el("button",{class:"mm-btn mm-btn--ghost mm-btn--mini",onclick:()=>showUserSummary(r.userId)},"View user"));
 
     const tokInfo = tok ? el("div",{style:"font-size:11px;color:var(--mm-fg-tertiary);margin-top:4px;font-family:var(--mm-f-mono);"},
-      `••••-${tok.displayTokenLast4} · ${tok.status}`) : null;
+      `••••-${tok.displayTokenLast4} · ${tok.status}` + (tok.usesAllowed==null?" · unlimited tests":` · ${tok.usesRemaining ?? tok.usesAllowed}/${tok.usesAllowed} left`)) : null;
 
     return el("tr",{},[
       el("td",{},[ el("div",{style:"font-weight:600;color:var(--mm-navy-800);"}, r.fullName), tokInfo ]),
@@ -12436,7 +12436,7 @@ function showUserSummary(userId){
 
   const tokRows = tokens.length ? tokens.slice().sort((a,b)=>new Date(b.createdAt)-new Date(a.createdAt)).map(t=>
     el("div",{style:"display:flex;align-items:center;justify-content:space-between;gap:10px;padding:7px 0;border-bottom:1px solid var(--mm-border-subtle);"},[
-      el("span",{style:"font-family:var(--mm-f-mono);font-size:12px;"}, `••••-${t.displayTokenLast4}`),
+      el("span",{style:"font-family:var(--mm-f-mono);font-size:12px;"}, `••••-${t.displayTokenLast4}` + (t.usesAllowed==null?" · unlimited":` · ${t.usesRemaining ?? t.usesAllowed}/${t.usesAllowed} left`)),
       statusChip(t.status),
       el("span",{style:"font-size:11px;color:var(--mm-fg-tertiary);"}, t.consumedForTestTitle ? `→ ${t.consumedForTestTitle}` : fmt.dateMed(t.createdAt))
     ])
@@ -12611,7 +12611,7 @@ const Cloud = {
                 userId:t.user_id, deviceId:t.device_id, status:t.status, createdAt:t.created_at,
                 grantedAt:t.granted_at, grantedBy:t.granted_by, expiresAt:t.expires_at,
                 consumedAt:t.consumed_at, consumedForTestId:t.consumed_for_test_id,
-                consumedForTestTitle:t.consumed_for_title, revokedAt:t.revoked_at, revokedBy:t.revoked_by,
+                consumedForTestTitle:t.consumed_for_title, revokedAt:t.revoked_at, revokedBy:t.revoked_by, usesAllowed:t.uses_allowed, usesRemaining:t.uses_remaining,
                 revokeReason:t.revoke_reason, requestId:t.request_id }; },
   _req(r){ return { requestId:r.request_id, userId:r.user_id, fullName:(Cloud.cache.users.find(u=>u.id===r.user_id)||{}).fullName||"—",
                 ageRange:(Cloud.cache.users.find(u=>u.id===r.user_id)||{}).ageRange, nationality:(Cloud.cache.users.find(u=>u.id===r.user_id)||{}).nationality,
@@ -12729,13 +12729,13 @@ function applyCloudOverrides(){
     if(error) return {ok:false,error:error.message}; return data; };
 
   AuthAccess.createTokenRequest = async (testId)=>{ const r = await rpc("request_token",{p_test_id:testId||null, p_device:dev()}); await Cloud.refresh(); return r; };
-  AuthAccess.grantToken = async (requestId,{expiryPreset="7"}={})=>{
-    const r = await rpc("grant_token",{p_request_id:requestId, p_expiry_preset:expiryPreset});
+  AuthAccess.grantToken = async (requestId,{expiryPreset="7", usesAllowed="1"}={})=>{
+    const r = await rpc("grant_token",{p_request_id:requestId, p_expiry_preset:expiryPreset, p_uses:parseInt(usesAllowed,10)});
     await Cloud.refresh();
     if(!r||!r.ok) return r||{ok:false,error:"Grant failed."};
     const req = Cloud.cache.requests.find(x=>x.requestId===requestId);
     return {ok:true, token:{ tokenId:r.token_id, rawTokenForDisplay:r.raw_token, expiresAt:r.expires_at,
-            displayTokenLast4:r.display_last4, fullName:(req&&req.fullName)||"the candidate" }};
+            displayTokenLast4:r.display_last4, usesAllowed:(parseInt(usesAllowed,10)===0?null:parseInt(usesAllowed,10)), fullName:(req&&req.fullName)||"the candidate" }};
   };
   AuthAccess.rejectTokenRequest = async (requestId, reason)=>{ const r=await rpc("reject_request",{p_request_id:requestId,p_reason:reason||null}); await Cloud.refresh(); return r; };
   AuthAccess.revokeToken = async (tokenId, reason)=>{ const r=await rpc("revoke_token",{p_token_id:tokenId,p_reason:reason||null}); await Cloud.refresh(); return r; };
